@@ -1,0 +1,19 @@
+generated-with: Easy Java/Javascript Simulations, version 6.0, build 191124. Visit http://www.um.es/fem/Ejs
+title: 
+logo-image: 
+author: Author name
+copyright: 
+preferred-width: 800
+preferred-height: 600
+author-image: 
+source: MaPS_2020.ejss
+main-script: 
+main-simulation: MaPS_2020_Simulation.xhtml
+available-languages: 
+html-description: MaPS_2020_Intro_1.html
+html-contents: MaPS_2020_Contents.xhtml
+html-main: MaPS_2020.xhtml
+page-title: Intro Page
+page-index: MaPS_2020_Intro_1.html
+page-title: Simulation
+page-index: MaPS_2020_Simulation.xhtml
