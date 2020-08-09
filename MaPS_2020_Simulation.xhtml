@@ -65,7 +65,6 @@ var _stringProperties = {};
   var __pagesEnabled = [];
   function _setPageEnabled(pageName,enabled) { __pagesEnabled[pageName] = enabled; }
 
-  var bars; // EjsS Model.Variables.Variables.bars
   var startingPosX; // EjsS Model.Variables.Variables.startingPosX
   var startingPosY; // EjsS Model.Variables.Variables.startingPosY
   var startingSize; // EjsS Model.Variables.Variables.startingSize
@@ -74,6 +73,7 @@ var _stringProperties = {};
   var posY; // EjsS Model.Variables.Variables.posY
   var size; // EjsS Model.Variables.Variables.size
   var barInteracted; // EjsS Model.Variables.Variables.barInteracted
+  var colors; // EjsS Model.Variables.Variables.colors
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -86,7 +86,6 @@ var _stringProperties = {};
 
   _model._userSerialize = function() {
     return {
-      bars : bars,
       startingPosX : startingPosX,
       startingPosY : startingPosY,
       startingSize : startingSize,
@@ -95,6 +94,7 @@ var _stringProperties = {};
       posY : posY,
       size : size,
       barInteracted : barInteracted,
+      colors : colors,
       font : font
     };
   };
@@ -103,7 +103,6 @@ var _stringProperties = {};
 
   _model._userSerializePublic = function() {
     return {
-      bars : bars,
       startingPosX : startingPosX,
       startingPosY : startingPosY,
       startingSize : startingSize,
@@ -112,12 +111,12 @@ var _stringProperties = {};
       posY : posY,
       size : size,
       barInteracted : barInteracted,
+      colors : colors,
       font : font
     };
   };
 
   _model._readParameters = function(json) {
-    if(typeof json.bars != "undefined") bars = json.bars;
     if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
@@ -126,11 +125,11 @@ var _stringProperties = {};
     if(typeof json.posY != "undefined") posY = json.posY;
     if(typeof json.size != "undefined") size = json.size;
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
+    if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.font != "undefined") font = json.font;
   };
 
   _model._readParametersPublic = function(json) {
-    if(typeof json.bars != "undefined") bars = json.bars;
     if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
@@ -139,6 +138,7 @@ var _stringProperties = {};
     if(typeof json.posY != "undefined") posY = json.posY;
     if(typeof json.size != "undefined") size = json.size;
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
+    if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -163,7 +163,6 @@ var _stringProperties = {};
   });
 
   _model.addToReset(function() {
-    bars = {}; // EjsS Model.Variables.Variables.bars
     startingPosX = 50; // EjsS Model.Variables.Variables.startingPosX
     startingPosY = 50; // EjsS Model.Variables.Variables.startingPosY
     startingSize = 10; // EjsS Model.Variables.Variables.startingSize
@@ -172,14 +171,14 @@ var _stringProperties = {};
     (function () {
       var _i0;
       for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posX
-        posX[_i0] = 50;  // EjsS Model.Variables.Variables.posX
+        posX[_i0] = 20;  // EjsS Model.Variables.Variables.posX
       }
     }());
     posY = new Array(1); // EjsS Model.Variables.Variables.posY
     (function () {
       var _i0;
       for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posY
-        posY[_i0] = 50;  // EjsS Model.Variables.Variables.posY
+        posY[_i0] = 20;  // EjsS Model.Variables.Variables.posY
       }
     }());
     size = new Array(1); // EjsS Model.Variables.Variables.size
@@ -190,6 +189,13 @@ var _stringProperties = {};
       }
     }());
     barInteracted = -1; // EjsS Model.Variables.Variables.barInteracted
+    colors = new Array(1); // EjsS Model.Variables.Variables.colors
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.colors
+        colors[_i0] = "blue";  // EjsS Model.Variables.Variables.colors
+      }
+    }());
   });
 
   _model.addToReset(function() {
@@ -207,13 +213,52 @@ var _stringProperties = {};
     _model.setStepsPerDisplay(1);
   });
 
-  function bar_Selection (e) {  // > CustomCode.Bar Selection:1
-    console.log("You have selected: "+e);  // > CustomCode.Bar Selection:2
+  function bar_Selection () {  // > CustomCode.Bar Selection:1
+    console.log("Bar Selected: "+barInteracted);//Log the selection  // > CustomCode.Bar Selection:2
   }  // > CustomCode.Bar Selection:3
+
+  function divider () {  // > CustomCode.divider:1
+    //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
+    if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
+      var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
+      if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:5
+        alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:6
+        //Get array size  // > CustomCode.divider:7
+        var arr_size = size.length;  // > CustomCode.divider:8
+        //Initial size of new bars  // > CustomCode.divider:9
+        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:10
+        //Get original bar stats  // > CustomCode.divider:11
+        var new_color = colors[barInteracted];  // > CustomCode.divider:12
+        var og_posX = posX[barInteracted];  // > CustomCode.divider:13
+        var og_posY = posY[barInteracted];  // > CustomCode.divider:14
+        //Shorten the original bar  // > CustomCode.divider:15
+        size[barInteracted] = new_size;  // > CustomCode.divider:16
+        //Loop for noOfPieces and add to list  // > CustomCode.divider:17
+        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:18
+            posX.push(og_posX+i*new_size);  // > CustomCode.divider:19
+            posY.push(og_posY);  // > CustomCode.divider:20
+            size.push(new_size);  // > CustomCode.divider:21
+            colors.push(new_color);  // > CustomCode.divider:22
+          }  // > CustomCode.divider:23
+        }  // > CustomCode.divider:24
+      else {//Else if not an integer, display error msg  // > CustomCode.divider:25
+      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:26
+      }  // > CustomCode.divider:27
+    }  // > CustomCode.divider:28
+    else {//Display error message  // > CustomCode.divider:29
+      alert('Please select one unit to be divided!');  // > CustomCode.divider:30
+      }     // > CustomCode.divider:31
+  }  // > CustomCode.divider:32
+
+  function isInt(value) {  // > CustomCode.isInt():1
+    return !isNaN(value) &&   // > CustomCode.isInt():2
+           parseInt(Number(value)) == value &&   // > CustomCode.isInt():3
+           !isNaN(parseInt(value, 10));  // > CustomCode.isInt():4
+  }  // > CustomCode.isInt():5
 
   function alignLeft () {  // > CustomCode.AlignLeft:1
     for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
-      posX[i] = 20;  // > CustomCode.AlignLeft:3
+      posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
       }  // > CustomCode.AlignLeft:4
   }  // > CustomCode.AlignLeft:5
 
@@ -223,24 +268,19 @@ var _stringProperties = {};
   posX.push(startingPosX);  // > CustomCode.Create Bar Function:4
   posY.push(startingPosY);  // > CustomCode.Create Bar Function:5
   size.push(startingSize);  // > CustomCode.Create Bar Function:6
-  }  // > CustomCode.Create Bar Function:7
+  colors.push("Yellow");  // > CustomCode.Create Bar Function:7
+  }  // > CustomCode.Create Bar Function:8
+
+  function removeBar () {  // > CustomCode.removeBar:1
+    if (barInteracted > -1) {  // > CustomCode.removeBar:2
+    posY[barInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeBar:3
+    barInteracted = -1;//Reset bar selection  // > CustomCode.removeBar:4
+  }  // > CustomCode.removeBar:5
+      // > CustomCode.removeBar:6
+  }  // > CustomCode.removeBar:7
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
-    bars = {}//Initialize the dictionary by emptying it  // > Initialization.Init Page:1
-    /*  // > Initialization.Init Page:2
-    It should be placed in this format:  // > Initialization.Init Page:3
-    bars = {  // > Initialization.Init Page:4
-        "bar1": {"coordinates": [5,3],  // > Initialization.Init Page:5
-                  "size": 2,  // > Initialization.Init Page:6
-                  "visible" :true  // > Initialization.Init Page:7
-          },  // > Initialization.Init Page:8
-        "bar2": {"coordinates": [5,3],  // > Initialization.Init Page:9
-                  "size": 2,  // > Initialization.Init Page:10
-                  "visible" :true  // > Initialization.Init Page:11
-          }  // > Initialization.Init Page:12
-      }  // > Initialization.Init Page:13
-    */  // > Initialization.Init Page:14
   });
 
   _model.addToFixedRelations(function() { _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); });
@@ -270,8 +310,11 @@ var _stringProperties = {};
         case 0:
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
+          _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
+          _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
   alert ("I pressed bar :"+barInteracted);
 
@@ -280,10 +323,7 @@ var _stringProperties = {};
           _view.barSets.linkProperty("SizeX",  function() { return size; }, function(_v) { size = _v; } ); // Front End linking property 'SizeX' for element 'barSets'
           _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
           _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
-          _view.barSets.setAction("OnPress", function(_data,_info) {
-  console.log("Bar Selected: "+barInteracted);
-
-}); // Front End setting action 'OnPress' for element 'barSets'
+          _view.barSets.setAction("OnPress", bar_Selection); // Front End setting action 'OnPress' for element 'barSets'
           _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
           break;
       } // end of switch
@@ -382,7 +422,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
       .setProperty("Tooltip","Divider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
       .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"fractionButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'fractionButton'
@@ -424,7 +464,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
       .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
       .setProperty("Text","Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
@@ -459,7 +499,6 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
-      .setProperty("FillColor","yellow") // EJsS HtmlView.Front End: setting property 'FillColor' for element 'barSets'
       .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
       .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
