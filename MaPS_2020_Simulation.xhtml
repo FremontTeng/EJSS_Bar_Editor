@@ -3,13 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <meta charset="utf-8" />
-    <title>MaPS_EJSS</title>
+    <title>Mathematics PlaySpace MaPS_EJSS Bar Model Singapore Math</title>
     <link rel="stylesheet"  type="text/css" href="_ejs_library/css/ejss.css" />
     <script src="_ejs_library/scripts/common_script.js"></script>
     <script src="_ejs_library/scripts/textresizedetector.js"></script>
     <script src="_ejs_library/ejsS.v1.min.js"></script>
 <script type="text/javascript"><!--//--><![CDATA[//><!--
-/* _inputParameters: an object with different values for the model parameters */
 function MaPS_2020(_topFrame,_libraryPath,_codebasePath, _inputParameters) {
   var _model = EJSS_CORE.createAnimationLMS();
   var _view;
@@ -18,14 +17,7 @@ function MaPS_2020(_topFrame,_libraryPath,_codebasePath, _inputParameters) {
   var _isMobile = (navigator===undefined) ? false : navigator.userAgent.match(/iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i);
 
 var _stringProperties = {};
-  var _tools = {
-    showInputDialog : EJSS_INTERFACE.BoxPanel.showInputDialog,
-    showOkDialog : EJSS_INTERFACE.BoxPanel.showOkDialog,
-    showOkCancelDialog : EJSS_INTERFACE.BoxPanel.showOkCancelDialog,
-    downloadText: EJSS_TOOLS.File.downloadText,
-    uploadText: function(action) { EJSS_TOOLS.File.uploadText(_model,action); } 
-  };
-
+  var _tools = EJSS_CORE.Tools;
   function _play()  { _isPaused = false; _isPlaying = true;  _model.play();  }
   function _pause() { _isPaused = true;  _isPlaying = false; _model.pause(); }
   function _step()  { _pause();  _model.step(); }
@@ -74,6 +66,7 @@ var _stringProperties = {};
   var size; // EjsS Model.Variables.Variables.size
   var barInteracted; // EjsS Model.Variables.Variables.barInteracted
   var colors; // EjsS Model.Variables.Variables.colors
+  var noOfPieces; // EjsS Model.Variables.Variables.noOfPieces
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -95,23 +88,7 @@ var _stringProperties = {};
       size : size,
       barInteracted : barInteracted,
       colors : colors,
-      font : font
-    };
-  };
-
-  function _serializePublic() { return _model.serializePublic(); }
-
-  _model._userSerializePublic = function() {
-    return {
-      startingPosX : startingPosX,
-      startingPosY : startingPosY,
-      startingSize : startingSize,
-      barHeight : barHeight,
-      posX : posX,
-      posY : posY,
-      size : size,
-      barInteracted : barInteracted,
-      colors : colors,
+      noOfPieces : noOfPieces,
       font : font
     };
   };
@@ -126,66 +103,40 @@ var _stringProperties = {};
     if(typeof json.size != "undefined") size = json.size;
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.colors != "undefined") colors = json.colors;
+    if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
     if(typeof json.font != "undefined") font = json.font;
-  };
-
-  _model._readParametersPublic = function(json) {
-    if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
-    if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
-    if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
-    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
-    if(typeof json.posX != "undefined") posX = json.posX;
-    if(typeof json.posY != "undefined") posY = json.posY;
-    if(typeof json.size != "undefined") size = json.size;
-    if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
-    if(typeof json.colors != "undefined") colors = json.colors;
-    if(typeof json.font != "undefined") font = json.font;
-  };
-
-  function _unserializePublic(json) { return _model.unserializePublic(json); }
-
-  _model._userUnserializePublic = function(json) {
-    _model._readParametersPublic(json);
-   _resetSolvers();
-   _model.update();
   };
 
   function _unserialize(json) { return _model.unserialize(json); }
-
-  _model._userUnserialize = function(json) {
-    _model._readParameters(json);
-   _resetSolvers();
-   _model.update();
-  };
 
   _model.addToReset(function() {
     __pagesEnabled["Init Page"] = true;
   });
 
   _model.addToReset(function() {
-    startingPosX = 50; // EjsS Model.Variables.Variables.startingPosX
-    startingPosY = 50; // EjsS Model.Variables.Variables.startingPosY
-    startingSize = 10; // EjsS Model.Variables.Variables.startingSize
-    barHeight = 5; // EjsS Model.Variables.Variables.barHeight
+    startingPosX = 0; // EjsS Model.Variables.Variables.startingPosX
+    startingPosY = 0; // EjsS Model.Variables.Variables.startingPosY
+    startingSize = 5; // EjsS Model.Variables.Variables.startingSize
+    barHeight = 1; // EjsS Model.Variables.Variables.barHeight
     posX = new Array(1); // EjsS Model.Variables.Variables.posX
     (function () {
       var _i0;
       for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posX
-        posX[_i0] = 20;  // EjsS Model.Variables.Variables.posX
+        posX[_i0] = 0;  // EjsS Model.Variables.Variables.posX
       }
     }());
     posY = new Array(1); // EjsS Model.Variables.Variables.posY
     (function () {
       var _i0;
       for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posY
-        posY[_i0] = 20;  // EjsS Model.Variables.Variables.posY
+        posY[_i0] = -1;  // EjsS Model.Variables.Variables.posY
       }
     }());
     size = new Array(1); // EjsS Model.Variables.Variables.size
     (function () {
       var _i0;
       for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.size
-        size[_i0] = 10;  // EjsS Model.Variables.Variables.size
+        size[_i0] = 5;  // EjsS Model.Variables.Variables.size
       }
     }());
     barInteracted = -1; // EjsS Model.Variables.Variables.barInteracted
@@ -196,6 +147,7 @@ var _stringProperties = {};
         colors[_i0] = "blue";  // EjsS Model.Variables.Variables.colors
       }
     }());
+    noOfPieces = 1; // EjsS Model.Variables.Variables.noOfPieces
   });
 
   _model.addToReset(function() {
@@ -213,40 +165,49 @@ var _stringProperties = {};
     _model.setStepsPerDisplay(1);
   });
 
-  function bar_Selection () {  // > CustomCode.Bar Selection:1
+  function bar_Selection () { // put in onrelease instead of onpress  // > CustomCode.Bar Selection:1
     console.log("Bar Selected: "+barInteracted);//Log the selection  // > CustomCode.Bar Selection:2
-  }  // > CustomCode.Bar Selection:3
+  // need to add extra code to handle the divider mnode,  // > CustomCode.Bar Selection:3
+  // example if divide by 4  // > CustomCode.Bar Selection:4
+  // on release, it should snap to every 10/4 instead of 10 as above //lookang added snapping     // > CustomCode.Bar Selection:5
+  //posX[barInteracted] = Math.round(posX[barInteracted]/10)*10/noOfPieces; //lookang added snapping to nearest 10 but   // > CustomCode.Bar Selection:6
+  //posY[barInteracted] = Math.round(posY[barInteracted]/10)*10/noOfPieces;  // > CustomCode.Bar Selection:7
+  posX[barInteracted] = Math.round(posX[barInteracted]/10)*10; //lookang added snapping to nearest 10 but   // > CustomCode.Bar Selection:8
+  posY[barInteracted] = Math.round(posY[barInteracted]/10)*10;  // > CustomCode.Bar Selection:9
+  }  // > CustomCode.Bar Selection:10
 
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
-      var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
-      if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:5
-        alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:6
-        //Initial size of new bars  // > CustomCode.divider:7
-        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:8
-        //Get original bar stats  // > CustomCode.divider:9
-        var new_color = colors[barInteracted];  // > CustomCode.divider:10
-        var og_posX = posX[barInteracted];  // > CustomCode.divider:11
-        var og_posY = posY[barInteracted];  // > CustomCode.divider:12
-        //Shorten the original bar  // > CustomCode.divider:13
-        size[barInteracted] = new_size;  // > CustomCode.divider:14
-        //Loop for noOfPieces and add to list  // > CustomCode.divider:15
-        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:16
-            posX.push(og_posX+i*new_size);  // > CustomCode.divider:17
-            posY.push(og_posY);  // > CustomCode.divider:18
-            size.push(new_size);  // > CustomCode.divider:19
-            colors.push(new_color);  // > CustomCode.divider:20
-          }  // > CustomCode.divider:21
-        }  // > CustomCode.divider:22
-      else {//Else if not an integer, display error msg  // > CustomCode.divider:23
-      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:24
-      }  // > CustomCode.divider:25
-    }  // > CustomCode.divider:26
-    else {//Display error message  // > CustomCode.divider:27
-      alert('Please select one unit to be divided!');  // > CustomCode.divider:28
-      }     // > CustomCode.divider:29
-  }  // > CustomCode.divider:30
+   //   var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
+     noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:5
+     // > CustomCode.divider:6
+   if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:7
+        alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:8
+        //Initial size of new bars  // > CustomCode.divider:9
+        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:10
+        //Get original bar stats  // > CustomCode.divider:11
+        var new_color = colors[barInteracted];  // > CustomCode.divider:12
+        var og_posX = posX[barInteracted];  // > CustomCode.divider:13
+        var og_posY = posY[barInteracted];  // > CustomCode.divider:14
+        //Shorten the original bar  // > CustomCode.divider:15
+        size[barInteracted] = new_size;  // > CustomCode.divider:16
+        //Loop for noOfPieces and add to list  // > CustomCode.divider:17
+        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:18
+            posX.push(og_posX+i*new_size);  // > CustomCode.divider:19
+            posY.push(og_posY);  // > CustomCode.divider:20
+            size.push(new_size);  // > CustomCode.divider:21
+            colors.push(new_color);  // > CustomCode.divider:22
+          }  // > CustomCode.divider:23
+        }  // > CustomCode.divider:24
+      else {//Else if not an integer, display error msg  // > CustomCode.divider:25
+      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:26
+      }  // > CustomCode.divider:27
+    }  // > CustomCode.divider:28
+    else {//Display error message  // > CustomCode.divider:29
+      alert('Please select one unit to be divided!');  // > CustomCode.divider:30
+      }     // > CustomCode.divider:31
+  }  // > CustomCode.divider:32
 
   function fractions () {  // > CustomCode.fractions:1
     //Function is to divide the bar into several pieces based on the input fraction  // > CustomCode.fractions:2
@@ -290,9 +251,13 @@ var _stringProperties = {};
 
   function alignLeft () {  // > CustomCode.AlignLeft:1
     for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
-      posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
-      }  // > CustomCode.AlignLeft:4
-  }  // > CustomCode.AlignLeft:5
+    //  posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
+      // > CustomCode.AlignLeft:4
+      // > CustomCode.AlignLeft:5
+      // > CustomCode.AlignLeft:6
+      posX[i] = -5; // new Align due to resize to -10 to 10 instead of -100 to 100  // > CustomCode.AlignLeft:7
+      }  // > CustomCode.AlignLeft:8
+  }  // > CustomCode.AlignLeft:9
 
   function createBar () {  // > CustomCode.Create Bar Function:1
   if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:2
@@ -335,7 +300,7 @@ var _stringProperties = {};
   function _getViews() {
     var _viewsInfo = [];
     var _counter = 0;
-    _viewsInfo[_counter++] = { name : "Front End", width : 800, height : 600 };
+    _viewsInfo[_counter++] = { name : "Front End", width : null, height : null };
     return _viewsInfo;
   } // end of _getViews
 
@@ -356,16 +321,18 @@ var _stringProperties = {};
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
+          _view.plottingPanel.linkProperty("TRMessage",  function() { return "noOfPieces="+noOfPieces; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
+          _view.plottingPanel.linkProperty("TLMessage",  function() { return "posX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
   alert ("I pressed bar :"+barInteracted);
 
 }); // Front End setting action 'OnDoubleClick' for element 'barSets'
           _view.barSets.linkProperty("ElementInteracted",  function() { return barInteracted; }, function(_v) { barInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'barSets'
+          _view.barSets.setAction("OnRelease", bar_Selection); // Front End setting action 'OnRelease' for element 'barSets'
           _view.barSets.linkProperty("SizeX",  function() { return size; }, function(_v) { size = _v; } ); // Front End linking property 'SizeX' for element 'barSets'
           _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
           _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
-          _view.barSets.setAction("OnPress", bar_Selection); // Front End setting action 'OnPress' for element 'barSets'
           _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
           break;
       } // end of switch
@@ -413,6 +380,7 @@ function MaPS_2020_View_0 (_topFrame) {
 
     _view._addElement(EJSS_INTERFACE.imageAndTextButton,"topLabel", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'topLabel'
       .setProperty("Text","<h1>MaPS_EJSS</h1>") // EJsS HtmlView.Front End: setting property 'Text' for element 'topLabel'
+      .setProperty("Display","none") // EJsS HtmlView.Front End: setting property 'Display' for element 'topLabel'
       ;
 
     _view._addElement(EJSS_INTERFACE.textField,"questionField", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'questionField'
@@ -435,7 +403,7 @@ function MaPS_2020_View_0 (_topFrame) {
 
     _view._addElement(EJSS_INTERFACE.button,"createBarButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'createBarButton'
       .setProperty("Tooltip","Create Bar") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'createBarButton'
-      .setProperty("Text","Create Bar") // EJsS HtmlView.Front End: setting property 'Text' for element 'createBarButton'
+      .setProperty("Text","❚Create Bar") // EJsS HtmlView.Front End: setting property 'Text' for element 'createBarButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"spacerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'spacerButton'
@@ -463,7 +431,7 @@ function MaPS_2020_View_0 (_topFrame) {
 
     _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
       .setProperty("Tooltip","Divides the bar into equal pieces. ") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
-      .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
+      .setProperty("Text","÷Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
       ;
 
@@ -475,13 +443,13 @@ function MaPS_2020_View_0 (_topFrame) {
 
     _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
       .setProperty("Tooltip","Ratio") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ratioButton'
-      .setProperty("Text","Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
+      .setProperty("Text",":Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
       .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ratioButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
       .setProperty("Tooltip","Percentage") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'PercentageButton'
-      .setProperty("Text","Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
+      .setProperty("Text","%Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
       .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'PercentageButton'
       ;
 
@@ -505,21 +473,22 @@ function MaPS_2020_View_0 (_topFrame) {
 
     _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
       .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
-      .setProperty("Text","Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
+      .setProperty("Text","🗑Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
       .setProperty("Tooltip","Reset") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ResetButton'
-      .setProperty("Text","Reset") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
+      .setProperty("Text","↻Reset") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"row", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'row'
       .setProperty("CSS",{"position":"relative",  "display": "inline-flex",  "left": "0vw",  "margin-left":"0cm",  "margin-right":"0cm",  "margin-top":"0cm",  "margin-bottom":"0cm"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'row'
+      .setProperty("Display","block") // EJsS HtmlView.Front End: setting property 'Display' for element 'row'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"leftpanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'leftpanel'
-      .setProperty("Width","70vw") // EJsS HtmlView.Front End: setting property 'Width' for element 'leftpanel'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'leftpanel'
       .setProperty("CSS",{"display":"inline-block",    "margin":"2px",    "vertical-align": "top",   "position": "relative",   "margin-left": "1vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftpanel'
       .setProperty("Background","Cyan") // EJsS HtmlView.Front End: setting property 'Background' for element 'leftpanel'
       ;
@@ -527,22 +496,27 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_DRAWING2D.plottingPanel,"plottingPanel", _view.leftpanel) // EJsS HtmlView.Front End: declaration of element 'plottingPanel'
       .setProperty("Height","70vh") // EJsS HtmlView.Front End: setting property 'Height' for element 'plottingPanel'
       .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'plottingPanel'
-      .setProperty("Gutters",[0,0,0,0]) // EJsS HtmlView.Front End: setting property 'Gutters' for element 'plottingPanel'
+      .setProperty("Gutters",[50,0,0,50]) // EJsS HtmlView.Front End: setting property 'Gutters' for element 'plottingPanel'
       .setProperty("ShowCoordinates",false) // EJsS HtmlView.Front End: setting property 'ShowCoordinates' for element 'plottingPanel'
+      .setProperty("XFixedTick",0) // EJsS HtmlView.Front End: setting property 'XFixedTick' for element 'plottingPanel'
       .setProperty("Enabled",true) // EJsS HtmlView.Front End: setting property 'Enabled' for element 'plottingPanel'
-      .setProperty("AxisXShow",false) // EJsS HtmlView.Front End: setting property 'AxisXShow' for element 'plottingPanel'
-      .setProperty("MaximumY",100) // EJsS HtmlView.Front End: setting property 'MaximumY' for element 'plottingPanel'
-      .setProperty("MaximumX",100) // EJsS HtmlView.Front End: setting property 'MaximumX' for element 'plottingPanel'
-      .setProperty("MinimumX",0) // EJsS HtmlView.Front End: setting property 'MinimumX' for element 'plottingPanel'
-      .setProperty("AxisYShow",false) // EJsS HtmlView.Front End: setting property 'AxisYShow' for element 'plottingPanel'
-      .setProperty("MinimumY",0) // EJsS HtmlView.Front End: setting property 'MinimumY' for element 'plottingPanel'
+      .setProperty("MaximumY",10) // EJsS HtmlView.Front End: setting property 'MaximumY' for element 'plottingPanel'
+      .setProperty("MaximumX",10) // EJsS HtmlView.Front End: setting property 'MaximumX' for element 'plottingPanel'
+      .setProperty("YFixedTick",0) // EJsS HtmlView.Front End: setting property 'YFixedTick' for element 'plottingPanel'
+      .setProperty("YAutoTicks",false) // EJsS HtmlView.Front End: setting property 'YAutoTicks' for element 'plottingPanel'
+      .setProperty("MinimumX",-10) // EJsS HtmlView.Front End: setting property 'MinimumX' for element 'plottingPanel'
+      .setProperty("MinimumY",-10) // EJsS HtmlView.Front End: setting property 'MinimumY' for element 'plottingPanel'
+      .setProperty("XTickStep",1) // EJsS HtmlView.Front End: setting property 'XTickStep' for element 'plottingPanel'
+      .setProperty("YTickStep",1) // EJsS HtmlView.Front End: setting property 'YTickStep' for element 'plottingPanel'
       .setProperty("AutoScaleY",false) // EJsS HtmlView.Front End: setting property 'AutoScaleY' for element 'plottingPanel'
       .setProperty("AutoScaleX",false) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
+      .setProperty("XAutoTicks",false) // EJsS HtmlView.Front End: setting property 'XAutoTicks' for element 'plottingPanel'
       ;
 
     _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
       .setProperty("RelativePosition","WEST") // EJsS HtmlView.Front End: setting property 'RelativePosition' for element 'barSets'
       .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
+      .setProperty("Sensitivity",0) // EJsS HtmlView.Front End: setting property 'Sensitivity' for element 'barSets'
       .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
       .setProperty("LineWidth","0.25vw") // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'barSets'
@@ -553,6 +527,7 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Width","25vw") // EJsS HtmlView.Front End: setting property 'Width' for element 'rightPanel'
       .setProperty("CSS",{"display":"inline-block",    "margin":"2px",    "vertical-align": "top",   "position": "relative",   "margin-left": "1vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'rightPanel'
       .setProperty("Background","Blue") // EJsS HtmlView.Front End: setting property 'Background' for element 'rightPanel'
+      .setProperty("Display","none") // EJsS HtmlView.Front End: setting property 'Display' for element 'rightPanel'
       ;
 
     _view._addElement(EJSS_DRAWING2D.drawingPanel,"workspace", _view.rightPanel) // EJsS HtmlView.Front End: declaration of element 'workspace'
@@ -590,7 +565,7 @@ function MaPS_2020_View_0 (_topFrame) {
       <hr />
       <b>Title and author:</b>
       <p>
-      MaPS_EJSS<br />
+      Mathematics PlaySpace MaPS_EJSS Bar Model Singapore Math<br />
       </p>
       <p>
  Fremont Teng
@@ -599,7 +574,7 @@ function MaPS_2020_View_0 (_topFrame) {
     <hr />
     <p></p>
     <div id="copyright_message">
-      <div class="cc_left"  style="float:left">&#169; 2020, Fremont Teng. Compiled with EJS 6.0 (191124)
+      <div class="cc_left"  style="float:left">&#169; 2020, Fremont Teng. Compiled with EJS 6.1 BETA (200424)
 </div>
       <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="_ejs_library/images/cc_icon.png" /> </a> license.</div>
     </div>
