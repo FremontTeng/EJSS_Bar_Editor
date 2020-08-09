@@ -296,10 +296,10 @@ var _stringProperties = {};
 
   function createBar () {  // > CustomCode.Create Bar Function:1
   if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:2
-    posX.push(startingPosX);  // > CustomCode.Create Bar Function:3
-    posY.push(startingPosY+barHeight);  // > CustomCode.Create Bar Function:4
+    posX.push(startingPosX);//Populate in the starting position  // > CustomCode.Create Bar Function:3
+    posY.push(startingPosY);  // > CustomCode.Create Bar Function:4
   }  // > CustomCode.Create Bar Function:5
-  else {  // > CustomCode.Create Bar Function:6
+  else {//Populate above the selected bar  // > CustomCode.Create Bar Function:6
     posX.push(posX[barInteracted]);  // > CustomCode.Create Bar Function:7
     posY.push(posY[barInteracted]+barHeight);  // > CustomCode.Create Bar Function:8
     }  // > CustomCode.Create Bar Function:9
