@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>MaPS_EJSS</title>
     <link rel="stylesheet"  type="text/css" href="_ejs_library/css/ejss.css" />
     <script src="_ejs_library/scripts/common_script.js"></script>
     <script src="_ejs_library/scripts/textresizedetector.js"></script>
@@ -196,7 +196,95 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.imageAndTextButton,"topLabel", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'topLabel'
-      .setProperty("Text","<h1>An Attempt</h1>") // EJsS HtmlView.Front End: setting property 'Text' for element 'topLabel'
+      .setProperty("Text","<h1>MaPS_EJSS</h1>") // EJsS HtmlView.Front End: setting property 'Text' for element 'topLabel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.textField,"questionField", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'questionField'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'questionField'
+      .setProperty("CSS",{"font-size":"1.5vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'questionField'
+      .setProperty("Tooltip","Insert your Question here.") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'questionField'
+      .setProperty("Value","Insert your question.") // EJsS HtmlView.Front End: setting property 'Value' for element 'questionField'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"controlPanel", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'controlPanel'
+      .setProperty("Width",400) // EJsS HtmlView.Front End: setting property 'Width' for element 'controlPanel'
+      .setProperty("CSS",{"left":"0"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'controlPanel'
+      .setProperty("Display","inline-block") // EJsS HtmlView.Front End: setting property 'Display' for element 'controlPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"leftTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'leftTools'
+      .setProperty("CSS",{"float" : "left"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftTools'
+      .setProperty("Display","inline-flex") // EJsS HtmlView.Front End: setting property 'Display' for element 'leftTools'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"createBarButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'createBarButton'
+      .setProperty("Tooltip","Create Bar") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'createBarButton'
+      .setProperty("Text","Create Bar") // EJsS HtmlView.Front End: setting property 'Text' for element 'createBarButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"spacerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'spacerButton'
+      .setProperty("Tooltip","Create Spacer") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'spacerButton'
+      .setProperty("Text","Spacer") // EJsS HtmlView.Front End: setting property 'Text' for element 'spacerButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"resetButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'resetButton'
+      .setProperty("Tooltip","Create Brace") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'resetButton'
+      .setProperty("Text","Brace") // EJsS HtmlView.Front End: setting property 'Text' for element 'resetButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"labelButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'labelButton'
+      .setProperty("Tooltip","Create Label") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'labelButton'
+      .setProperty("Text","Label") // EJsS HtmlView.Front End: setting property 'Text' for element 'labelButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"rightTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'rightTools'
+      .setProperty("CSS",{ "float" : "right"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'rightTools'
+      .setProperty("Display","inline-flex") // EJsS HtmlView.Front End: setting property 'Display' for element 'rightTools'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
+      .setProperty("Tooltip","Divider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
+      .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"fractionButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'fractionButton'
+      .setProperty("Tooltip","Fraction") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'fractionButton'
+      .setProperty("Text","Fraction") // EJsS HtmlView.Front End: setting property 'Text' for element 'fractionButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
+      .setProperty("Tooltip","Ratio") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ratioButton'
+      .setProperty("Text","Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
+      .setProperty("Tooltip","Percentage") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'PercentageButton'
+      .setProperty("Text","Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
+      .setProperty("Tooltip","Align Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
+      .setProperty("Text","Align Left") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
+      .setProperty("Tooltip","Colours") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
+      .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"LinesButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'LinesButton'
+      .setProperty("Tooltip","Lines") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'LinesButton'
+      .setProperty("Text","Lines") // EJsS HtmlView.Front End: setting property 'Text' for element 'LinesButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
+      .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
+      .setProperty("Text","Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
+      .setProperty("Tooltip","Reset") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ResetButton'
+      .setProperty("Text","Reset") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"row", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'row'
@@ -214,10 +302,45 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'plottingPanel'
       .setProperty("Gutters",[0,0,0,0]) // EJsS HtmlView.Front End: setting property 'Gutters' for element 'plottingPanel'
       .setProperty("ShowCoordinates",false) // EJsS HtmlView.Front End: setting property 'ShowCoordinates' for element 'plottingPanel'
-      .setProperty("AxisYShow",false) // EJsS HtmlView.Front End: setting property 'AxisYShow' for element 'plottingPanel'
-      .setProperty("AutoScaleY",true) // EJsS HtmlView.Front End: setting property 'AutoScaleY' for element 'plottingPanel'
-      .setProperty("AutoScaleX",true) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
+      .setProperty("Enabled",true) // EJsS HtmlView.Front End: setting property 'Enabled' for element 'plottingPanel'
       .setProperty("AxisXShow",false) // EJsS HtmlView.Front End: setting property 'AxisXShow' for element 'plottingPanel'
+      .setProperty("MaximumY",100) // EJsS HtmlView.Front End: setting property 'MaximumY' for element 'plottingPanel'
+      .setProperty("MaximumX",100) // EJsS HtmlView.Front End: setting property 'MaximumX' for element 'plottingPanel'
+      .setProperty("MinimumX",0) // EJsS HtmlView.Front End: setting property 'MinimumX' for element 'plottingPanel'
+      .setProperty("AxisYShow",false) // EJsS HtmlView.Front End: setting property 'AxisYShow' for element 'plottingPanel'
+      .setProperty("MinimumY",0) // EJsS HtmlView.Front End: setting property 'MinimumY' for element 'plottingPanel'
+      .setProperty("AutoScaleY",false) // EJsS HtmlView.Front End: setting property 'AutoScaleY' for element 'plottingPanel'
+      .setProperty("AutoScaleX",false) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.group,"demoBar", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'demoBar'
+      .setProperty("X",50) // EJsS HtmlView.Front End: setting property 'X' for element 'demoBar'
+      .setProperty("Y",50) // EJsS HtmlView.Front End: setting property 'Y' for element 'demoBar'
+      .setProperty("Visibility",true) // EJsS HtmlView.Front End: setting property 'Visibility' for element 'demoBar'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"bar", _view.demoBar) // EJsS HtmlView.Front End: declaration of element 'bar'
+      .setProperty("FillColor","yellow") // EJsS HtmlView.Front End: setting property 'FillColor' for element 'bar'
+      .setProperty("MovesGroup",true) // EJsS HtmlView.Front End: setting property 'MovesGroup' for element 'bar'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'bar'
+      .setProperty("Measured",true) // EJsS HtmlView.Front End: setting property 'Measured' for element 'bar'
+      .setProperty("SizeX",10) // EJsS HtmlView.Front End: setting property 'SizeX' for element 'bar'
+      .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'bar'
+      .setProperty("Visibility",true) // EJsS HtmlView.Front End: setting property 'Visibility' for element 'bar'
+      .setProperty("SizeY",5) // EJsS HtmlView.Front End: setting property 'SizeY' for element 'bar'
+      .setProperty("LineWidth",2) // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'bar'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'bar'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shape,"size", _view.demoBar) // EJsS HtmlView.Front End: declaration of element 'size'
+      .setProperty("FillColor","White") // EJsS HtmlView.Front End: setting property 'FillColor' for element 'size'
+      .setProperty("SizeX",2) // EJsS HtmlView.Front End: setting property 'SizeX' for element 'size'
+      .setProperty("ShapeType","ELLIPSE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'size'
+      .setProperty("X",5) // EJsS HtmlView.Front End: setting property 'X' for element 'size'
+      .setProperty("LineColor","Gray") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'size'
+      .setProperty("Y",-2.5) // EJsS HtmlView.Front End: setting property 'Y' for element 'size'
+      .setProperty("SizeY",2) // EJsS HtmlView.Front End: setting property 'SizeY' for element 'size'
+      .setProperty("LineWidth",1) // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'size'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightPanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'rightPanel'
@@ -226,9 +349,23 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Background","Blue") // EJsS HtmlView.Front End: setting property 'Background' for element 'rightPanel'
       ;
 
-    _view._addElement(EJSS_DRAWING2D.drawingPanel,"drawingPanel", _view.rightPanel) // EJsS HtmlView.Front End: declaration of element 'drawingPanel'
-      .setProperty("Height","70vh") // EJsS HtmlView.Front End: setting property 'Height' for element 'drawingPanel'
-      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'drawingPanel'
+    _view._addElement(EJSS_DRAWING2D.drawingPanel,"workspace", _view.rightPanel) // EJsS HtmlView.Front End: declaration of element 'workspace'
+      .setProperty("Height","70vh") // EJsS HtmlView.Front End: setting property 'Height' for element 'workspace'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'workspace'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"workingSpaceText", _view.workspace) // EJsS HtmlView.Front End: declaration of element 'workingSpaceText'
+      .setProperty("Text","My Work Space") // EJsS HtmlView.Front End: setting property 'Text' for element 'workingSpaceText'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"answerRow", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'answerRow'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.textField,"questionField2", _view.answerRow) // EJsS HtmlView.Front End: declaration of element 'questionField2'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'questionField2'
+      .setProperty("CSS",{"font-size":"1.5vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'questionField2'
+      .setProperty("Tooltip","Put your answer.") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'questionField2'
+      .setProperty("Value","Answer") // EJsS HtmlView.Front End: setting property 'Value' for element 'questionField2'
       ;
 
   };
@@ -247,15 +384,16 @@ function MaPS_2020_View_0 (_topFrame) {
       <hr />
       <b>Title and author:</b>
       <p>
+      MaPS_EJSS<br />
       </p>
       <p>
- Author name
+ Fremont Teng
       </p>
     </div>
     <hr />
     <p></p>
     <div id="copyright_message">
-      <div class="cc_left"  style="float:left">&#169; 2020, Author name. Compiled with EJS 6.0 (191124)
+      <div class="cc_left"  style="float:left">&#169; 2020, Fremont Teng. Compiled with EJS 6.0 (191124)
 </div>
       <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="_ejs_library/images/cc_icon.png" /> </a> license.</div>
     </div>
