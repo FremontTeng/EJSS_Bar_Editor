@@ -308,8 +308,10 @@ var _stringProperties = {};
     posY[barInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeBar:3
     barInteracted = -1;//Reset bar selection  // > CustomCode.removeBar:4
   }  // > CustomCode.removeBar:5
-      // > CustomCode.removeBar:6
-  }  // > CustomCode.removeBar:7
+    else {  // > CustomCode.removeBar:6
+     alert('Select a bar first!');   // > CustomCode.removeBar:7
+    }  // > CustomCode.removeBar:8
+  }  // > CustomCode.removeBar:9
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
@@ -532,6 +534,7 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
+      .setProperty("RelativePosition","WEST") // EJsS HtmlView.Front End: setting property 'RelativePosition' for element 'barSets'
       .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
       .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
