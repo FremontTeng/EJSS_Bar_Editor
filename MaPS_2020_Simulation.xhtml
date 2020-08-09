@@ -295,13 +295,20 @@ var _stringProperties = {};
   }  // > CustomCode.AlignLeft:5
 
   function createBar () {  // > CustomCode.Create Bar Function:1
-  //Get array size  // > CustomCode.Create Bar Function:2
-  var arr_size = size.length;  // > CustomCode.Create Bar Function:3
-  posX.push(startingPosX);  // > CustomCode.Create Bar Function:4
-  posY.push(startingPosY);  // > CustomCode.Create Bar Function:5
-  size.push(startingSize);  // > CustomCode.Create Bar Function:6
-  colors.push("Yellow");  // > CustomCode.Create Bar Function:7
-  }  // > CustomCode.Create Bar Function:8
+  if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:2
+    posX.push(startingPosX);  // > CustomCode.Create Bar Function:3
+    posY.push(startingPosY+barHeight);  // > CustomCode.Create Bar Function:4
+  }  // > CustomCode.Create Bar Function:5
+  else {  // > CustomCode.Create Bar Function:6
+    posX.push(posX[barInteracted]);  // > CustomCode.Create Bar Function:7
+    posY.push(posY[barInteracted]+barHeight);  // > CustomCode.Create Bar Function:8
+    }  // > CustomCode.Create Bar Function:9
+  size.push(startingSize);  // > CustomCode.Create Bar Function:10
+  colors.push("Yellow");  // > CustomCode.Create Bar Function:11
+  //Get array size  // > CustomCode.Create Bar Function:12
+  var arr_size = size.length;  // > CustomCode.Create Bar Function:13
+  barInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bar Function:14
+  }  // > CustomCode.Create Bar Function:15
 
   function removeBar () {  // > CustomCode.removeBar:1
     if (barInteracted > -1) {  // > CustomCode.removeBar:2
