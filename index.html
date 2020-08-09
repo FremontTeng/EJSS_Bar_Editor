@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>MaPS_EJSS</title>
     <link rel="stylesheet"  type="text/css" href="_ejs_library/css/ejss.css" />
     <script src="_ejs_library/scripts/common_script.js"></script>
     <script src="_ejs_library/scripts/textresizedetector.js"></script>
@@ -65,6 +65,17 @@ var _stringProperties = {};
   var __pagesEnabled = [];
   function _setPageEnabled(pageName,enabled) { __pagesEnabled[pageName] = enabled; }
 
+  var startingPosX; // EjsS Model.Variables.Variables.startingPosX
+  var startingPosY; // EjsS Model.Variables.Variables.startingPosY
+  var startingSize; // EjsS Model.Variables.Variables.startingSize
+  var barHeight; // EjsS Model.Variables.Variables.barHeight
+  var posX; // EjsS Model.Variables.Variables.posX
+  var posY; // EjsS Model.Variables.Variables.posY
+  var size; // EjsS Model.Variables.Variables.size
+  var barInteracted; // EjsS Model.Variables.Variables.barInteracted
+  var colors; // EjsS Model.Variables.Variables.colors
+
+  var font; // EjsS Model.Variables.Visualization.font
 
   _model.getOdes = function() { return []; };
 
@@ -75,7 +86,16 @@ var _stringProperties = {};
 
   _model._userSerialize = function() {
     return {
-
+      startingPosX : startingPosX,
+      startingPosY : startingPosY,
+      startingSize : startingSize,
+      barHeight : barHeight,
+      posX : posX,
+      posY : posY,
+      size : size,
+      barInteracted : barInteracted,
+      colors : colors,
+      font : font
     };
   };
 
@@ -83,14 +103,43 @@ var _stringProperties = {};
 
   _model._userSerializePublic = function() {
     return {
-
+      startingPosX : startingPosX,
+      startingPosY : startingPosY,
+      startingSize : startingSize,
+      barHeight : barHeight,
+      posX : posX,
+      posY : posY,
+      size : size,
+      barInteracted : barInteracted,
+      colors : colors,
+      font : font
     };
   };
 
   _model._readParameters = function(json) {
+    if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
+    if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
+    if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
+    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.posX != "undefined") posX = json.posX;
+    if(typeof json.posY != "undefined") posY = json.posY;
+    if(typeof json.size != "undefined") size = json.size;
+    if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
+    if(typeof json.colors != "undefined") colors = json.colors;
+    if(typeof json.font != "undefined") font = json.font;
   };
 
   _model._readParametersPublic = function(json) {
+    if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
+    if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
+    if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
+    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.posX != "undefined") posX = json.posX;
+    if(typeof json.posY != "undefined") posY = json.posY;
+    if(typeof json.size != "undefined") size = json.size;
+    if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
+    if(typeof json.colors != "undefined") colors = json.colors;
+    if(typeof json.font != "undefined") font = json.font;
   };
 
   function _unserializePublic(json) { return _model.unserializePublic(json); }
@@ -110,9 +159,47 @@ var _stringProperties = {};
   };
 
   _model.addToReset(function() {
+    __pagesEnabled["Init Page"] = true;
   });
 
   _model.addToReset(function() {
+    startingPosX = 50; // EjsS Model.Variables.Variables.startingPosX
+    startingPosY = 50; // EjsS Model.Variables.Variables.startingPosY
+    startingSize = 10; // EjsS Model.Variables.Variables.startingSize
+    barHeight = 5; // EjsS Model.Variables.Variables.barHeight
+    posX = new Array(1); // EjsS Model.Variables.Variables.posX
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posX
+        posX[_i0] = 20;  // EjsS Model.Variables.Variables.posX
+      }
+    }());
+    posY = new Array(1); // EjsS Model.Variables.Variables.posY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posY
+        posY[_i0] = 20;  // EjsS Model.Variables.Variables.posY
+      }
+    }());
+    size = new Array(1); // EjsS Model.Variables.Variables.size
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.size
+        size[_i0] = 10;  // EjsS Model.Variables.Variables.size
+      }
+    }());
+    barInteracted = -1; // EjsS Model.Variables.Variables.barInteracted
+    colors = new Array(1); // EjsS Model.Variables.Variables.colors
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.colors
+        colors[_i0] = "blue";  // EjsS Model.Variables.Variables.colors
+      }
+    }());
+  });
+
+  _model.addToReset(function() {
+    font = "normal normal 1.5vw"; // EjsS Model.Variables.Visualization.font
   });
 
   if (_inputParameters) {
@@ -124,6 +211,76 @@ var _stringProperties = {};
     _model.setAutoplay(false);
     _model.setFPS(20);
     _model.setStepsPerDisplay(1);
+  });
+
+  function bar_Selection () {  // > CustomCode.Bar Selection:1
+    console.log("Bar Selected: "+barInteracted);//Log the selection  // > CustomCode.Bar Selection:2
+  }  // > CustomCode.Bar Selection:3
+
+  function divider () {  // > CustomCode.divider:1
+    //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
+    if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
+      var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
+      if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:5
+        alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:6
+        //Get array size  // > CustomCode.divider:7
+        var arr_size = size.length;  // > CustomCode.divider:8
+        //Initial size of new bars  // > CustomCode.divider:9
+        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:10
+        //Get original bar stats  // > CustomCode.divider:11
+        var new_color = colors[barInteracted];  // > CustomCode.divider:12
+        var og_posX = posX[barInteracted];  // > CustomCode.divider:13
+        var og_posY = posY[barInteracted];  // > CustomCode.divider:14
+        //Shorten the original bar  // > CustomCode.divider:15
+        size[barInteracted] = new_size;  // > CustomCode.divider:16
+        //Loop for noOfPieces and add to list  // > CustomCode.divider:17
+        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:18
+            posX.push(og_posX+i*new_size);  // > CustomCode.divider:19
+            posY.push(og_posY);  // > CustomCode.divider:20
+            size.push(new_size);  // > CustomCode.divider:21
+            colors.push(new_color);  // > CustomCode.divider:22
+          }  // > CustomCode.divider:23
+        }  // > CustomCode.divider:24
+      else {//Else if not an integer, display error msg  // > CustomCode.divider:25
+      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:26
+      }  // > CustomCode.divider:27
+    }  // > CustomCode.divider:28
+    else {//Display error message  // > CustomCode.divider:29
+      alert('Please select one unit to be divided!');  // > CustomCode.divider:30
+      }     // > CustomCode.divider:31
+  }  // > CustomCode.divider:32
+
+  function isInt(value) {  // > CustomCode.isInt():1
+    return !isNaN(value) &&   // > CustomCode.isInt():2
+           parseInt(Number(value)) == value &&   // > CustomCode.isInt():3
+           !isNaN(parseInt(value, 10));  // > CustomCode.isInt():4
+  }  // > CustomCode.isInt():5
+
+  function alignLeft () {  // > CustomCode.AlignLeft:1
+    for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
+      posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
+      }  // > CustomCode.AlignLeft:4
+  }  // > CustomCode.AlignLeft:5
+
+  function createBar () {  // > CustomCode.Create Bar Function:1
+  //Get array size  // > CustomCode.Create Bar Function:2
+  var arr_size = size.length;  // > CustomCode.Create Bar Function:3
+  posX.push(startingPosX);  // > CustomCode.Create Bar Function:4
+  posY.push(startingPosY);  // > CustomCode.Create Bar Function:5
+  size.push(startingSize);  // > CustomCode.Create Bar Function:6
+  colors.push("Yellow");  // > CustomCode.Create Bar Function:7
+  }  // > CustomCode.Create Bar Function:8
+
+  function removeBar () {  // > CustomCode.removeBar:1
+    if (barInteracted > -1) {  // > CustomCode.removeBar:2
+    posY[barInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeBar:3
+    barInteracted = -1;//Reset bar selection  // > CustomCode.removeBar:4
+  }  // > CustomCode.removeBar:5
+      // > CustomCode.removeBar:6
+  }  // > CustomCode.removeBar:7
+
+  _model.addToInitialization(function() {
+    if (!__pagesEnabled["Init Page"]) return;
   });
 
   _model.addToFixedRelations(function() { _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); });
@@ -151,6 +308,23 @@ var _stringProperties = {};
         case -10 : break; // make Lint happy
         default :
         case 0:
+          _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
+          _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
+          _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
+          _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
+          _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
+          _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
+          _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
+  alert ("I pressed bar :"+barInteracted);
+
+}); // Front End setting action 'OnDoubleClick' for element 'barSets'
+          _view.barSets.linkProperty("ElementInteracted",  function() { return barInteracted; }, function(_v) { barInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'barSets'
+          _view.barSets.linkProperty("SizeX",  function() { return size; }, function(_v) { size = _v; } ); // Front End linking property 'SizeX' for element 'barSets'
+          _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
+          _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
+          _view.barSets.setAction("OnPress", bar_Selection); // Front End setting action 'OnPress' for element 'barSets'
+          _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
           break;
       } // end of switch
     }; // end of new reset
@@ -196,7 +370,106 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.imageAndTextButton,"topLabel", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'topLabel'
-      .setProperty("Text","<h1>An Attempt</h1>") // EJsS HtmlView.Front End: setting property 'Text' for element 'topLabel'
+      .setProperty("Text","<h1>MaPS_EJSS</h1>") // EJsS HtmlView.Front End: setting property 'Text' for element 'topLabel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.textField,"questionField", _view.labelPanel) // EJsS HtmlView.Front End: declaration of element 'questionField'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'questionField'
+      .setProperty("CSS",{"font-size":"1.5vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'questionField'
+      .setProperty("Tooltip","Insert your Question here.") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'questionField'
+      .setProperty("Value","Insert your question.") // EJsS HtmlView.Front End: setting property 'Value' for element 'questionField'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"controlPanel", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'controlPanel'
+      .setProperty("Width",400) // EJsS HtmlView.Front End: setting property 'Width' for element 'controlPanel'
+      .setProperty("CSS",{"left":"0"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'controlPanel'
+      .setProperty("Display","inline-block") // EJsS HtmlView.Front End: setting property 'Display' for element 'controlPanel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"leftTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'leftTools'
+      .setProperty("CSS",{"float" : "left"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftTools'
+      .setProperty("Display","inline-flex") // EJsS HtmlView.Front End: setting property 'Display' for element 'leftTools'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"createBarButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'createBarButton'
+      .setProperty("Tooltip","Create Bar") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'createBarButton'
+      .setProperty("Text","Create Bar") // EJsS HtmlView.Front End: setting property 'Text' for element 'createBarButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"spacerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'spacerButton'
+      .setProperty("Tooltip","Create Spacer") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'spacerButton'
+      .setProperty("Text","Spacer") // EJsS HtmlView.Front End: setting property 'Text' for element 'spacerButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'spacerButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"bracerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'bracerButton'
+      .setProperty("Tooltip","Create Brace") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'bracerButton'
+      .setProperty("Text","Brace") // EJsS HtmlView.Front End: setting property 'Text' for element 'bracerButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'bracerButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"labelButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'labelButton'
+      .setProperty("Tooltip","Create Label") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'labelButton'
+      .setProperty("Text","Label") // EJsS HtmlView.Front End: setting property 'Text' for element 'labelButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"rightTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'rightTools'
+      .setProperty("CSS",{ "float" : "right"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'rightTools'
+      .setProperty("Display","inline-flex") // EJsS HtmlView.Front End: setting property 'Display' for element 'rightTools'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
+      .setProperty("Tooltip","Divider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
+      .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"fractionButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'fractionButton'
+      .setProperty("Tooltip","Fraction") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'fractionButton'
+      .setProperty("Text","Fraction") // EJsS HtmlView.Front End: setting property 'Text' for element 'fractionButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'fractionButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
+      .setProperty("Tooltip","Ratio") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ratioButton'
+      .setProperty("Text","Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ratioButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
+      .setProperty("Tooltip","Percentage") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'PercentageButton'
+      .setProperty("Text","Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'PercentageButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
+      .setProperty("Tooltip","Align Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
+      .setProperty("Text","Align Left") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'AlignLeftButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
+      .setProperty("Tooltip","Colours") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
+      .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ColorsButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"LinesButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'LinesButton'
+      .setProperty("Tooltip","Lines") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'LinesButton'
+      .setProperty("Text","Lines") // EJsS HtmlView.Front End: setting property 'Text' for element 'LinesButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'LinesButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
+      .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
+      .setProperty("Text","Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
+      .setProperty("Tooltip","Reset") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ResetButton'
+      .setProperty("Text","Reset") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"row", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'row'
@@ -214,10 +487,23 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'plottingPanel'
       .setProperty("Gutters",[0,0,0,0]) // EJsS HtmlView.Front End: setting property 'Gutters' for element 'plottingPanel'
       .setProperty("ShowCoordinates",false) // EJsS HtmlView.Front End: setting property 'ShowCoordinates' for element 'plottingPanel'
-      .setProperty("AxisYShow",false) // EJsS HtmlView.Front End: setting property 'AxisYShow' for element 'plottingPanel'
-      .setProperty("AutoScaleY",true) // EJsS HtmlView.Front End: setting property 'AutoScaleY' for element 'plottingPanel'
-      .setProperty("AutoScaleX",true) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
+      .setProperty("Enabled",true) // EJsS HtmlView.Front End: setting property 'Enabled' for element 'plottingPanel'
       .setProperty("AxisXShow",false) // EJsS HtmlView.Front End: setting property 'AxisXShow' for element 'plottingPanel'
+      .setProperty("MaximumY",100) // EJsS HtmlView.Front End: setting property 'MaximumY' for element 'plottingPanel'
+      .setProperty("MaximumX",100) // EJsS HtmlView.Front End: setting property 'MaximumX' for element 'plottingPanel'
+      .setProperty("MinimumX",0) // EJsS HtmlView.Front End: setting property 'MinimumX' for element 'plottingPanel'
+      .setProperty("AxisYShow",false) // EJsS HtmlView.Front End: setting property 'AxisYShow' for element 'plottingPanel'
+      .setProperty("MinimumY",0) // EJsS HtmlView.Front End: setting property 'MinimumY' for element 'plottingPanel'
+      .setProperty("AutoScaleY",false) // EJsS HtmlView.Front End: setting property 'AutoScaleY' for element 'plottingPanel'
+      .setProperty("AutoScaleX",false) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
+      .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
+      .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
+      .setProperty("LineWidth","0.25vw") // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'barSets'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'barSets'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightPanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'rightPanel'
@@ -226,9 +512,23 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Background","Blue") // EJsS HtmlView.Front End: setting property 'Background' for element 'rightPanel'
       ;
 
-    _view._addElement(EJSS_DRAWING2D.drawingPanel,"drawingPanel", _view.rightPanel) // EJsS HtmlView.Front End: declaration of element 'drawingPanel'
-      .setProperty("Height","70vh") // EJsS HtmlView.Front End: setting property 'Height' for element 'drawingPanel'
-      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'drawingPanel'
+    _view._addElement(EJSS_DRAWING2D.drawingPanel,"workspace", _view.rightPanel) // EJsS HtmlView.Front End: declaration of element 'workspace'
+      .setProperty("Height","70vh") // EJsS HtmlView.Front End: setting property 'Height' for element 'workspace'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'workspace'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.text,"workingSpaceText", _view.workspace) // EJsS HtmlView.Front End: declaration of element 'workingSpaceText'
+      .setProperty("Text","My Work Space") // EJsS HtmlView.Front End: setting property 'Text' for element 'workingSpaceText'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.panel,"answerRow", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'answerRow'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.textField,"questionField2", _view.answerRow) // EJsS HtmlView.Front End: declaration of element 'questionField2'
+      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'questionField2'
+      .setProperty("CSS",{"font-size":"1.5vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'questionField2'
+      .setProperty("Tooltip","Put your answer.") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'questionField2'
+      .setProperty("Value","Answer") // EJsS HtmlView.Front End: setting property 'Value' for element 'questionField2'
       ;
 
   };
@@ -247,15 +547,16 @@ function MaPS_2020_View_0 (_topFrame) {
       <hr />
       <b>Title and author:</b>
       <p>
+      MaPS_EJSS<br />
       </p>
       <p>
- Author name
+ Fremont Teng
       </p>
     </div>
     <hr />
     <p></p>
     <div id="copyright_message">
-      <div class="cc_left"  style="float:left">&#169; 2020, Author name. Compiled with EJS 6.0 (191124)
+      <div class="cc_left"  style="float:left">&#169; 2020, Fremont Teng. Compiled with EJS 6.0 (191124)
 </div>
       <div class="cc_right" style="float:right">    Released under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"> <img alt="Creative Commons Attribution-NonCommercial-ShareAlike" src="_ejs_library/images/cc_icon.png" /> </a> license.</div>
     </div>
