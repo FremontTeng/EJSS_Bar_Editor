@@ -70,6 +70,10 @@ var _stringProperties = {};
   var startingPosY; // EjsS Model.Variables.Variables.startingPosY
   var startingSize; // EjsS Model.Variables.Variables.startingSize
   var barHeight; // EjsS Model.Variables.Variables.barHeight
+  var posX; // EjsS Model.Variables.Variables.posX
+  var posY; // EjsS Model.Variables.Variables.posY
+  var size; // EjsS Model.Variables.Variables.size
+  var barInteracted; // EjsS Model.Variables.Variables.barInteracted
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -87,6 +91,10 @@ var _stringProperties = {};
       startingPosY : startingPosY,
       startingSize : startingSize,
       barHeight : barHeight,
+      posX : posX,
+      posY : posY,
+      size : size,
+      barInteracted : barInteracted,
       font : font
     };
   };
@@ -100,6 +108,10 @@ var _stringProperties = {};
       startingPosY : startingPosY,
       startingSize : startingSize,
       barHeight : barHeight,
+      posX : posX,
+      posY : posY,
+      size : size,
+      barInteracted : barInteracted,
       font : font
     };
   };
@@ -110,6 +122,10 @@ var _stringProperties = {};
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
     if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.posX != "undefined") posX = json.posX;
+    if(typeof json.posY != "undefined") posY = json.posY;
+    if(typeof json.size != "undefined") size = json.size;
+    if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -119,6 +135,10 @@ var _stringProperties = {};
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
     if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.posX != "undefined") posX = json.posX;
+    if(typeof json.posY != "undefined") posY = json.posY;
+    if(typeof json.size != "undefined") size = json.size;
+    if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -148,6 +168,28 @@ var _stringProperties = {};
     startingPosY = 50; // EjsS Model.Variables.Variables.startingPosY
     startingSize = 10; // EjsS Model.Variables.Variables.startingSize
     barHeight = 5; // EjsS Model.Variables.Variables.barHeight
+    posX = new Array(1); // EjsS Model.Variables.Variables.posX
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posX
+        posX[_i0] = 50;  // EjsS Model.Variables.Variables.posX
+      }
+    }());
+    posY = new Array(1); // EjsS Model.Variables.Variables.posY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posY
+        posY[_i0] = 50;  // EjsS Model.Variables.Variables.posY
+      }
+    }());
+    size = new Array(1); // EjsS Model.Variables.Variables.size
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.size
+        size[_i0] = 10;  // EjsS Model.Variables.Variables.size
+      }
+    }());
+    barInteracted = -1; // EjsS Model.Variables.Variables.barInteracted
   });
 
   _model.addToReset(function() {
@@ -164,6 +206,24 @@ var _stringProperties = {};
     _model.setFPS(20);
     _model.setStepsPerDisplay(1);
   });
+
+  function bar_Selection (e) {  // > CustomCode.Bar Selection:1
+    console.log("You have selected: "+e);  // > CustomCode.Bar Selection:2
+  }  // > CustomCode.Bar Selection:3
+
+  function alignLeft () {  // > CustomCode.AlignLeft:1
+    for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
+      posX[i] = 20;  // > CustomCode.AlignLeft:3
+      }  // > CustomCode.AlignLeft:4
+  }  // > CustomCode.AlignLeft:5
+
+  function createBar () {  // > CustomCode.Create Bar Function:1
+  //Get array size  // > CustomCode.Create Bar Function:2
+  var arr_size = size.length;  // > CustomCode.Create Bar Function:3
+  posX.push(startingPosX);  // > CustomCode.Create Bar Function:4
+  posY.push(startingPosY);  // > CustomCode.Create Bar Function:5
+  size.push(startingSize);  // > CustomCode.Create Bar Function:6
+  }  // > CustomCode.Create Bar Function:7
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
@@ -209,60 +269,22 @@ var _stringProperties = {};
         default :
         case 0:
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
-          _view.createBarButton.setAction("OnClick", function(_data,_info) {
-  //Get size of dictionary
-  var dict_size = Object.keys(bars).length
-  var bar_id = dict_size+1;
-  
-  bars[bar_id] = {
-    "coordinates": [startingPosX,startingPosY],
-    "size": [startingSize],
-    "visible": true
-  }
-  
-  //Adding a Group Element into Plotting Panel
-  _view._addElement(EJSS_DRAWING2D.group,"group"+bar_id, _view.plottingPanel) // EJsS HtmlView.HtmlView Page: declaration of element
-        .setProperty("X",startingPosX) // EJsS HtmlView.HtmlView Page: setting property 'X' for element
-        .setProperty("Y",startingPosY) // EJsS HtmlView.HtmlView Page: setting property 'Y' for element
-       // set to 2 for ease of programming stuff in one
-       .setProperty("SizeX",startingSize) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element
-       .setProperty("SizeY",barHeight) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element
-        ;
-  
-  //Adding a Rectangle Element into the Above Group
-  _view._addElement(EJSS_DRAWING2D.shape,"bar"+bar_id, eval("_view.group"+bar_id))// EJsS HtmlView.HtmlView Page: declaration of element
-        .setProperty("MovesGroup",true) // EJsS HtmlView.HtmlView Page: setting property 'MovesGroup' for element
-        .setProperty("FillColor","Yellow") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element
-       // set 1 for ease of object
-       .setProperty("SizeX",1) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element
-        .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element
-        .setProperty("LineColor","black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element
-        .setProperty("Visibility",true) // EJsS HtmlView.HtmlView Page: setting property 'Visibility' for element
-        .setProperty("SizeY",1) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element
-        .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.HtmlView Page: setting property 'EnabledPosition' for element
-        .setProperty("RelativePosition","WEST") // EJsS HtmlView.HtmlView Page: setting property 'RelativePosition' for element
-        .setProperty("Sensitivity",0) //lookang make the whole object rectangle hot to drag
-        ;
-  
-  //Adding the Element of the draggable circle for the rectangle
-  _view._addElement(EJSS_DRAWING2D.shape,"shapecircle"+bar_id, eval("_view.group"+bar_id)) // EJsS HtmlView.HtmlView Page: declaration of element
-        .setProperty("ResizesGroup",true)// EJsS HtmlView.HtmlView Page: setting property 'ResizesGroup' for element 
-        .setProperty("EnabledSize","ENABLED_X")// EJsS HtmlView.HtmlView Page: setting property 'ENABLED_X' for element 
-        .setProperty("FillColor","rgba(0,0,0,0.1)") // EJsS HtmlView.HtmlView Page: setting property 'FillColor' for element 
-        .setProperty("SizeX",20) // EJsS HtmlView.HtmlView Page: setting property 'SizeX' for element
-        .setProperty("PixelSize",true)
-        .setProperty("ShapeType","ELLIPSE") // EJsS HtmlView.HtmlView Page: setting property 'ShapeType' for element
-        .setProperty("LineColor","black") // EJsS HtmlView.HtmlView Page: setting property 'LineColor' for element
-      //set to 1
-      .setProperty("X",1) // EJsS HtmlView.HtmlView Page: setting property 'X' for element
-        .setProperty("Y",-0.5) // EJsS HtmlView.HtmlView Page: setting property 'Y' for element
-        .setProperty("Visibility",true) // EJsS HtmlView.HtmlView Page: setting property 'Visibility' for element
-        .setProperty("SizeY",20) // EJsS HtmlView.HtmlView Page: setting property 'SizeY' for element
-        .setProperty("RelativePosition","CENTER") // EJsS HtmlView.HtmlView Page: setting property 'RelativePosition' for element
-        ;
-
-}); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
+          _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
+  alert ("I pressed bar :"+barInteracted);
+
+}); // Front End setting action 'OnDoubleClick' for element 'barSets'
+          _view.barSets.linkProperty("ElementInteracted",  function() { return barInteracted; }, function(_v) { barInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'barSets'
+          _view.barSets.linkProperty("SizeX",  function() { return size; }, function(_v) { size = _v; } ); // Front End linking property 'SizeX' for element 'barSets'
+          _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
+          _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
+          _view.barSets.setAction("OnPress", function(_data,_info) {
+  console.log("Bar Selected: "+barInteracted);
+
+}); // Front End setting action 'OnPress' for element 'barSets'
+          _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
           break;
       } // end of switch
     }; // end of new reset
@@ -384,7 +406,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
       .setProperty("Tooltip","Align Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
       .setProperty("Text","Align Left") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'AlignLeftButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'AlignLeftButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
@@ -436,7 +458,13 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("AutoScaleX",false) // EJsS HtmlView.Front End: setting property 'AutoScaleX' for element 'plottingPanel'
       ;
 
-    _view._addElement(EJSS_DRAWING2D.shape,"shape", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'shape'
+    _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
+      .setProperty("FillColor","yellow") // EJsS HtmlView.Front End: setting property 'FillColor' for element 'barSets'
+      .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
+      .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
+      .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
+      .setProperty("LineWidth","0.25vw") // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'barSets'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'barSets'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightPanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'rightPanel'
