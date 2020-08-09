@@ -223,32 +223,64 @@ var _stringProperties = {};
       var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
       if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:5
         alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:6
-        //Get array size  // > CustomCode.divider:7
-        var arr_size = size.length;  // > CustomCode.divider:8
-        //Initial size of new bars  // > CustomCode.divider:9
-        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:10
-        //Get original bar stats  // > CustomCode.divider:11
-        var new_color = colors[barInteracted];  // > CustomCode.divider:12
-        var og_posX = posX[barInteracted];  // > CustomCode.divider:13
-        var og_posY = posY[barInteracted];  // > CustomCode.divider:14
-        //Shorten the original bar  // > CustomCode.divider:15
-        size[barInteracted] = new_size;  // > CustomCode.divider:16
-        //Loop for noOfPieces and add to list  // > CustomCode.divider:17
-        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:18
-            posX.push(og_posX+i*new_size);  // > CustomCode.divider:19
-            posY.push(og_posY);  // > CustomCode.divider:20
-            size.push(new_size);  // > CustomCode.divider:21
-            colors.push(new_color);  // > CustomCode.divider:22
-          }  // > CustomCode.divider:23
-        }  // > CustomCode.divider:24
-      else {//Else if not an integer, display error msg  // > CustomCode.divider:25
-      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:26
-      }  // > CustomCode.divider:27
-    }  // > CustomCode.divider:28
-    else {//Display error message  // > CustomCode.divider:29
-      alert('Please select one unit to be divided!');  // > CustomCode.divider:30
-      }     // > CustomCode.divider:31
-  }  // > CustomCode.divider:32
+        //Initial size of new bars  // > CustomCode.divider:7
+        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:8
+        //Get original bar stats  // > CustomCode.divider:9
+        var new_color = colors[barInteracted];  // > CustomCode.divider:10
+        var og_posX = posX[barInteracted];  // > CustomCode.divider:11
+        var og_posY = posY[barInteracted];  // > CustomCode.divider:12
+        //Shorten the original bar  // > CustomCode.divider:13
+        size[barInteracted] = new_size;  // > CustomCode.divider:14
+        //Loop for noOfPieces and add to list  // > CustomCode.divider:15
+        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:16
+            posX.push(og_posX+i*new_size);  // > CustomCode.divider:17
+            posY.push(og_posY);  // > CustomCode.divider:18
+            size.push(new_size);  // > CustomCode.divider:19
+            colors.push(new_color);  // > CustomCode.divider:20
+          }  // > CustomCode.divider:21
+        }  // > CustomCode.divider:22
+      else {//Else if not an integer, display error msg  // > CustomCode.divider:23
+      alert('Invalid divisor! Please type in a positive integer next time!');  // > CustomCode.divider:24
+      }  // > CustomCode.divider:25
+    }  // > CustomCode.divider:26
+    else {//Display error message  // > CustomCode.divider:27
+      alert('Please select one unit to be divided!');  // > CustomCode.divider:28
+      }     // > CustomCode.divider:29
+  }  // > CustomCode.divider:30
+
+  function fractions () {  // > CustomCode.fractions:1
+    //Function is to divide the bar into several pieces based on the input fraction  // > CustomCode.fractions:2
+    if (barInteracted>-1){//If a bar is selected  // > CustomCode.fractions:3
+      var part = prompt("Fraction = Part/ Whole\nPart = ");  // > CustomCode.fractions:4
+      var whole = prompt("Fraction = Part/ Whole\nWhole = ");  // > CustomCode.fractions:5
+      if (isInt(whole)&&  isInt(part)&& parseInt(whole,10)>0 && parseInt(part,10)>0 && part<whole){ //If the ans is an integer  // > CustomCode.fractions:6
+        //Initial size of new bars  // > CustomCode.fractions:7
+        var new_size = size[barInteracted]/whole;  // > CustomCode.fractions:8
+        var new_color = "white";  // > CustomCode.fractions:9
+        //Get original bar stats  // > CustomCode.fractions:10
+        var og_color = colors[barInteracted];  // > CustomCode.fractions:11
+        var og_posX = posX[barInteracted];  // > CustomCode.fractions:12
+        var og_posY = posY[barInteracted];  // > CustomCode.fractions:13
+        //Shorten the original bar and color it white  // > CustomCode.fractions:14
+        size[barInteracted] = new_size;  // > CustomCode.fractions:15
+        //Loop for number of parts and add to list  // > CustomCode.fractions:16
+        for (var i=1;i<whole;i++){  // > CustomCode.fractions:17
+            posX.push(og_posX+i*new_size);  // > CustomCode.fractions:18
+            posY.push(og_posY);  // > CustomCode.fractions:19
+            size.push(new_size);  // > CustomCode.fractions:20
+            if (i+1>part)colors.push(new_color);  // > CustomCode.fractions:21
+            else colors.push(og_color);  // > CustomCode.fractions:22
+          }  // > CustomCode.fractions:23
+        alert("Spliting bar "+barInteracted+" into "+part+" / "+whole +"...");      // > CustomCode.fractions:24
+        }  // > CustomCode.fractions:25
+      else {//Else if not an integer, display error msg  // > CustomCode.fractions:26
+      alert('Please enter in a proper fraction. ');  // > CustomCode.fractions:27
+      }  // > CustomCode.fractions:28
+    }  // > CustomCode.fractions:29
+    else {//Display error message  // > CustomCode.fractions:30
+      alert('Please select one unit to be divided!');  // > CustomCode.fractions:31
+      }     // > CustomCode.fractions:32
+  }  // > CustomCode.fractions:33
 
   function isInt(value) {  // > CustomCode.isInt():1
     return !isNaN(value) &&   // > CustomCode.isInt():2
@@ -311,6 +343,7 @@ var _stringProperties = {};
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
           _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
+          _view.fractionButton.setAction("OnClick", fractions); // Front End setting action 'OnClick' for element 'fractionButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
@@ -420,7 +453,7 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
-      .setProperty("Tooltip","Divider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
+      .setProperty("Tooltip","Divides the bar into equal pieces. ") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
       .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
       ;
@@ -428,7 +461,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"fractionButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'fractionButton'
       .setProperty("Tooltip","Fraction") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'fractionButton'
       .setProperty("Text","Fraction") // EJsS HtmlView.Front End: setting property 'Text' for element 'fractionButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'fractionButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'fractionButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
