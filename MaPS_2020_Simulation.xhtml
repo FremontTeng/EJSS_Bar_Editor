@@ -151,6 +151,7 @@ var _stringProperties = {};
         case -10 : break; // make Lint happy
         default :
         case 0:
+          _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
           break;
       } // end of switch
     }; // end of new reset
@@ -225,16 +226,19 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"spacerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'spacerButton'
       .setProperty("Tooltip","Create Spacer") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'spacerButton'
       .setProperty("Text","Spacer") // EJsS HtmlView.Front End: setting property 'Text' for element 'spacerButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'spacerButton'
       ;
 
-    _view._addElement(EJSS_INTERFACE.button,"resetButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'resetButton'
-      .setProperty("Tooltip","Create Brace") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'resetButton'
-      .setProperty("Text","Brace") // EJsS HtmlView.Front End: setting property 'Text' for element 'resetButton'
+    _view._addElement(EJSS_INTERFACE.button,"bracerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'bracerButton'
+      .setProperty("Tooltip","Create Brace") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'bracerButton'
+      .setProperty("Text","Brace") // EJsS HtmlView.Front End: setting property 'Text' for element 'bracerButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'bracerButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"labelButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'labelButton'
       .setProperty("Tooltip","Create Label") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'labelButton'
       .setProperty("Text","Label") // EJsS HtmlView.Front End: setting property 'Text' for element 'labelButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'rightTools'
@@ -245,41 +249,49 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"dividerButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'dividerButton'
       .setProperty("Tooltip","Divider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'dividerButton'
       .setProperty("Text","Divider") // EJsS HtmlView.Front End: setting property 'Text' for element 'dividerButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'dividerButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"fractionButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'fractionButton'
       .setProperty("Tooltip","Fraction") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'fractionButton'
       .setProperty("Text","Fraction") // EJsS HtmlView.Front End: setting property 'Text' for element 'fractionButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'fractionButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
       .setProperty("Tooltip","Ratio") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ratioButton'
       .setProperty("Text","Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ratioButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
       .setProperty("Tooltip","Percentage") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'PercentageButton'
       .setProperty("Text","Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'PercentageButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
       .setProperty("Tooltip","Align Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
       .setProperty("Text","Align Left") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'AlignLeftButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
       .setProperty("Tooltip","Colours") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
       .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ColorsButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"LinesButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'LinesButton'
       .setProperty("Tooltip","Lines") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'LinesButton'
       .setProperty("Text","Lines") // EJsS HtmlView.Front End: setting property 'Text' for element 'LinesButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'LinesButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
       .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
       .setProperty("Text","Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
+      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
