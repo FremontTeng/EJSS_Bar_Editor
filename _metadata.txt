@@ -1,8 +1,10 @@
-generated-with: Easy Java/Javascript Simulations, version 6.1 BETA, build 200424. Visit http://www.um.es/fem/Ejs
+generated-with: Easy Java/Javascript Simulations, version 6.0, build 191124. Visit http://www.um.es/fem/Ejs
 title: Mathematics PlaySpace MaPS_EJSS Bar Model Singapore Math
 logo-image: 
 author: Fremont Teng
 copyright: 
+preferred-width: 800
+preferred-height: 600
 author-image: 
 source: MaPS_2020.ejss
 main-script: 
