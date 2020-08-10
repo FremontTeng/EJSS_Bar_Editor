@@ -375,7 +375,7 @@ var _stringProperties = {};
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
-          _view.plottingPanel.linkProperty("TRMessage",  function() { return "noOfPieces="+noOfPieces; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
+          _view.plottingPanel.linkProperty("TRMessage",  function() { return "barSelected="+barInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
           _view.plottingPanel.linkProperty("TLMessage",  function() { return "posX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
