@@ -76,6 +76,16 @@ var _stringProperties = {};
   var colors; // EjsS Model.Variables.Variables.colors
   var noOfPieces; // EjsS Model.Variables.Variables.noOfPieces
   var sizeEditor; // EjsS Model.Variables.Variables.sizeEditor
+  var selection; // EjsS Model.Variables.Variables.selection
+
+  var labelX; // EjsS Model.Variables.Label Variables.labelX
+  var labelY; // EjsS Model.Variables.Label Variables.labelY
+  var labelT; // EjsS Model.Variables.Label Variables.labelT
+  var labelInteracted; // EjsS Model.Variables.Label Variables.labelInteracted
+  var spacerX; // EjsS Model.Variables.Label Variables.spacerX
+  var spacerY; // EjsS Model.Variables.Label Variables.spacerY
+  var spacerInteracted; // EjsS Model.Variables.Label Variables.spacerInteracted
+  var spacerSize; // EjsS Model.Variables.Label Variables.spacerSize
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -99,6 +109,15 @@ var _stringProperties = {};
       colors : colors,
       noOfPieces : noOfPieces,
       sizeEditor : sizeEditor,
+      selection : selection,
+      labelX : labelX,
+      labelY : labelY,
+      labelT : labelT,
+      labelInteracted : labelInteracted,
+      spacerX : spacerX,
+      spacerY : spacerY,
+      spacerInteracted : spacerInteracted,
+      spacerSize : spacerSize,
       font : font
     };
   };
@@ -118,6 +137,15 @@ var _stringProperties = {};
       colors : colors,
       noOfPieces : noOfPieces,
       sizeEditor : sizeEditor,
+      selection : selection,
+      labelX : labelX,
+      labelY : labelY,
+      labelT : labelT,
+      labelInteracted : labelInteracted,
+      spacerX : spacerX,
+      spacerY : spacerY,
+      spacerInteracted : spacerInteracted,
+      spacerSize : spacerSize,
       font : font
     };
   };
@@ -134,6 +162,15 @@ var _stringProperties = {};
     if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
     if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
+    if(typeof json.selection != "undefined") selection = json.selection;
+    if(typeof json.labelX != "undefined") labelX = json.labelX;
+    if(typeof json.labelY != "undefined") labelY = json.labelY;
+    if(typeof json.labelT != "undefined") labelT = json.labelT;
+    if(typeof json.labelInteracted != "undefined") labelInteracted = json.labelInteracted;
+    if(typeof json.spacerX != "undefined") spacerX = json.spacerX;
+    if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
+    if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
+    if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -149,6 +186,15 @@ var _stringProperties = {};
     if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
     if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
+    if(typeof json.selection != "undefined") selection = json.selection;
+    if(typeof json.labelX != "undefined") labelX = json.labelX;
+    if(typeof json.labelY != "undefined") labelY = json.labelY;
+    if(typeof json.labelT != "undefined") labelT = json.labelT;
+    if(typeof json.labelInteracted != "undefined") labelInteracted = json.labelInteracted;
+    if(typeof json.spacerX != "undefined") spacerX = json.spacerX;
+    if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
+    if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
+    if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -211,6 +257,41 @@ var _stringProperties = {};
   });
 
   _model.addToReset(function() {
+    labelX = new Array(1); // EjsS Model.Variables.Label Variables.labelX
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelX
+        labelX[_i0] = 2.5;  // EjsS Model.Variables.Label Variables.labelX
+      }
+    }());
+    labelY = new Array(1); // EjsS Model.Variables.Label Variables.labelY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelY
+        labelY[_i0] = 0;  // EjsS Model.Variables.Label Variables.labelY
+      }
+    }());
+    labelT = new Array(1); // EjsS Model.Variables.Label Variables.labelT
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelT
+        labelT[_i0] = "5.0";  // EjsS Model.Variables.Label Variables.labelT
+      }
+    }());
+    labelInteracted = -1; // EjsS Model.Variables.Label Variables.labelInteracted
+    spacerX = [3,2]; // EjsS Model.Variables.Label Variables.spacerX
+    spacerY = new Array(1); // EjsS Model.Variables.Label Variables.spacerY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.spacerY
+        spacerY[_i0] = 0;  // EjsS Model.Variables.Label Variables.spacerY
+      }
+    }());
+    spacerInteracted = -1; // EjsS Model.Variables.Label Variables.spacerInteracted
+    spacerSize = [2,-2]; // EjsS Model.Variables.Label Variables.spacerSize
+  });
+
+  _model.addToReset(function() {
     font = "normal normal 1.5vw"; // EjsS Model.Variables.Visualization.font
   });
 
@@ -227,35 +308,43 @@ var _stringProperties = {};
 
   function bar_Selection () { // put in onrelease instead of onpress  // > CustomCode.Bar Selection:1
     console.log("Bar Selected: "+barInteracted);//Log the selection  // > CustomCode.Bar Selection:2
-  // Snapping Code by Frem  // > CustomCode.Bar Selection:3
-  //Loop for all elements in a set  // > CustomCode.Bar Selection:4
-  for (var i=0;i<posX.length;i++){  // > CustomCode.Bar Selection:5
-    if (i != barInteracted){//Ignore the target bar  // > CustomCode.Bar Selection:6
-      //If condition to check if the interacted bar is touching any other bar  // > CustomCode.Bar Selection:7
-      //This one checks if the interacting bar is touching the top right of the i bar  // > CustomCode.Bar Selection:8
-      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&& ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))       {  // > CustomCode.Bar Selection:9
-        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:10
-        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:11
-        }  // > CustomCode.Bar Selection:12
-       //This one checks if the interacting bar is touching the top left of the i bar  // > CustomCode.Bar Selection:13
-      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))     {  // > CustomCode.Bar Selection:14
-        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:15
-        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:16
-        }  // > CustomCode.Bar Selection:17
-          // > CustomCode.Bar Selection:18
-      //This one checks if the interacting bar is touching the bottom right of the i bar  // > CustomCode.Bar Selection:19
-      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){  // > CustomCode.Bar Selection:20
-        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:21
-        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:22
-        }  // > CustomCode.Bar Selection:23
-       //This one checks if the interacting bar is touching the bottom left of the i bar  // > CustomCode.Bar Selection:24
-      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){      // > CustomCode.Bar Selection:25
-        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:26
-        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:27
-        }    // > CustomCode.Bar Selection:28
-      }  // > CustomCode.Bar Selection:29
-    }  // > CustomCode.Bar Selection:30
-  }  // > CustomCode.Bar Selection:31
+  //Sets selection as a bar  // > CustomCode.Bar Selection:3
+  selection = "bar";  // > CustomCode.Bar Selection:4
+  // Snapping Code by Frem  // > CustomCode.Bar Selection:5
+  //Loop for all elements in a set  // > CustomCode.Bar Selection:6
+  for (var i=0;i<posX.length;i++){  // > CustomCode.Bar Selection:7
+    if (i != barInteracted){//Ignore the target bar  // > CustomCode.Bar Selection:8
+      //If condition to check if the interacted bar is touching any other bar  // > CustomCode.Bar Selection:9
+      //This one checks if the interacting bar is touching the top right of the i bar  // > CustomCode.Bar Selection:10
+      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&& ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))       {  // > CustomCode.Bar Selection:11
+        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:12
+        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:13
+        }  // > CustomCode.Bar Selection:14
+       //This one checks if the interacting bar is touching the top left of the i bar  // > CustomCode.Bar Selection:15
+      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))     {  // > CustomCode.Bar Selection:16
+        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:17
+        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:18
+        }  // > CustomCode.Bar Selection:19
+          // > CustomCode.Bar Selection:20
+      //This one checks if the interacting bar is touching the bottom right of the i bar  // > CustomCode.Bar Selection:21
+      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){  // > CustomCode.Bar Selection:22
+        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:23
+        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:24
+        }  // > CustomCode.Bar Selection:25
+       //This one checks if the interacting bar is touching the bottom left of the i bar  // > CustomCode.Bar Selection:26
+      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){      // > CustomCode.Bar Selection:27
+        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:28
+        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:29
+        }    // > CustomCode.Bar Selection:30
+      }  // > CustomCode.Bar Selection:31
+    }  // > CustomCode.Bar Selection:32
+  }  // > CustomCode.Bar Selection:33
+
+  function labelSelection () { // put in onrelease instead of onpress  // > CustomCode.Label Selection:1
+    console.log("Label Selected: "+labelInteracted);//Log the selection  // > CustomCode.Label Selection:2
+    //Sets selection as a label  // > CustomCode.Label Selection:3
+    selection = "label";  // > CustomCode.Label Selection:4
+  }  // > CustomCode.Label Selection:5
 
   function editSize () {  // > CustomCode.editSize:1
     if (barInteracted != -1){  // > CustomCode.editSize:2
@@ -493,17 +582,42 @@ var _stringProperties = {};
   //Get array size  // > CustomCode.Create Bar Function:12
   var arr_size = size.length;  // > CustomCode.Create Bar Function:13
   barInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bar Function:14
-  }  // > CustomCode.Create Bar Function:15
+  selection = "bar";//Sets last selection as the bar  // > CustomCode.Create Bar Function:15
+  }  // > CustomCode.Create Bar Function:16
 
-  function removeBar () {  // > CustomCode.removeBar:1
-    if (barInteracted > -1) {  // > CustomCode.removeBar:2
-    posY[barInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeBar:3
-    barInteracted = -1;//Reset bar selection  // > CustomCode.removeBar:4
-  }  // > CustomCode.removeBar:5
-    else {  // > CustomCode.removeBar:6
-     alert('Select a bar first!');   // > CustomCode.removeBar:7
-    }  // > CustomCode.removeBar:8
-  }  // > CustomCode.removeBar:9
+  function createLabel () {  // > CustomCode.Create Label:1
+    var labelname = prompt("Input Label: ");  // > CustomCode.Create Label:2
+    labelX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Label:3
+    labelY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Label:4
+    labelT.push(labelname);//Add label  // > CustomCode.Create Label:5
+  //Get array size  // > CustomCode.Create Label:6
+  var arr_size = labelT.length;  // > CustomCode.Create Label:7
+  labelInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Label:8
+  selection = "label";//Sets last selection to be label  // > CustomCode.Create Label:9
+  }  // > CustomCode.Create Label:10
+
+  function removeItem () {  // > CustomCode.removeFunction:1
+    switch(selection){  // > CustomCode.removeFunction:2
+      case "bar":  // > CustomCode.removeFunction:3
+          if (barInteracted > -1) {  // > CustomCode.removeFunction:4
+            posY[barInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeFunction:5
+            barInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:6
+          }  // > CustomCode.removeFunction:7
+          else {  // > CustomCode.removeFunction:8
+             alert('Select something first!');   // > CustomCode.removeFunction:9
+          }  // > CustomCode.removeFunction:10
+          break;  // > CustomCode.removeFunction:11
+       case "label":  // > CustomCode.removeFunction:12
+         if (labelInteracted > -1) {  // > CustomCode.removeFunction:13
+            labelY[labelInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeFunction:14
+            labelInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:15
+          }  // > CustomCode.removeFunction:16
+          else {  // > CustomCode.removeFunction:17
+             alert('Select something first!');   // > CustomCode.removeFunction:18
+          }  // > CustomCode.removeFunction:19
+      }  // > CustomCode.removeFunction:20
+      // > CustomCode.removeFunction:21
+  }  // > CustomCode.removeFunction:22
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
@@ -536,6 +650,7 @@ var _stringProperties = {};
         case 0:
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.labelButton.setAction("OnClick", createLabel); // Front End setting action 'OnClick' for element 'labelButton'
           _view.sizeSlider.linkProperty("Value",  function() { return sizeEditor; }, function(_v) { sizeEditor = _v; } ); // Front End linking property 'Value' for element 'sizeSlider'
           _view.sizeSlider.setAction("OnChange", editSize); // Front End setting action 'OnChange' for element 'sizeSlider'
           _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
@@ -547,9 +662,9 @@ var _stringProperties = {};
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.ColorsButton.linkProperty("Disabled",  function() { return barInteracted>-1?false:true; } ); // Front End linking property 'Disabled' for element 'ColorsButton'
           _view.ColorsButton.setAction("OnClick", toggleColor); // Front End setting action 'OnClick' for element 'ColorsButton'
-          _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
+          _view.RemoveButton.setAction("OnClick", removeItem); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
-          _view.plottingPanel.linkProperty("TRMessage",  function() { return "barSelected="+barInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
+          _view.plottingPanel.linkProperty("TRMessage",  function() { return "selection = "+selection+"\nbarSelected="+barInteracted+"\nlabelSelected = "+labelInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
           _view.plottingPanel.linkProperty("TLMessage",  function() { return "size="+size+"\nposX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
@@ -562,6 +677,16 @@ var _stringProperties = {};
           _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
           _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
           _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
+          _view.labelSets.linkProperty("X",  function() { return labelX; }, function(_v) { labelX = _v; } ); // Front End linking property 'X' for element 'labelSets'
+          _view.labelSets.linkProperty("Y",  function() { return labelY; }, function(_v) { labelY = _v; } ); // Front End linking property 'Y' for element 'labelSets'
+          _view.labelSets.linkProperty("Text",  function() { return labelT; }, function(_v) { labelT = _v; } ); // Front End linking property 'Text' for element 'labelSets'
+          _view.labelSets.setAction("OnPress", labelSelection); // Front End setting action 'OnPress' for element 'labelSets'
+          _view.labelSets.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'labelSets'
+          _view.labelSets.linkProperty("ElementInteracted",  function() { return labelInteracted; }, function(_v) { labelInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'labelSets'
+          _view.spacerSet.linkProperty("SizeX",  function() { return spacerSize; }, function(_v) { spacerSize = _v; } ); // Front End linking property 'SizeX' for element 'spacerSet'
+          _view.spacerSet.linkProperty("X",  function() { return spacerX; }, function(_v) { spacerX = _v; } ); // Front End linking property 'X' for element 'spacerSet'
+          _view.spacerSet.linkProperty("Y",  function() { return spacerY; }, function(_v) { spacerY = _v; } ); // Front End linking property 'Y' for element 'spacerSet'
+          _view.spacerSet.linkProperty("ElementInteracted",  function() { return spacerInteracted; }, function(_v) { spacerInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'spacerSet'
           break;
       } // end of switch
     }; // end of new reset
@@ -649,7 +774,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"labelButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'labelButton'
       .setProperty("Tooltip","Create Label") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'labelButton'
       .setProperty("Text","Label") // EJsS HtmlView.Front End: setting property 'Text' for element 'labelButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.imageAndTextButton,"sizeLabel", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeLabel'
@@ -703,12 +828,6 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
       ;
 
-    _view._addElement(EJSS_INTERFACE.button,"LinesButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'LinesButton'
-      .setProperty("Tooltip","Lines") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'LinesButton'
-      .setProperty("Text","Lines") // EJsS HtmlView.Front End: setting property 'Text' for element 'LinesButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'LinesButton'
-      ;
-
     _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
       .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
       .setProperty("Text","🗑Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
@@ -760,6 +879,18 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
       .setProperty("LineWidth","0.25vw") // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'barSets'
       .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'barSets'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.textSet,"labelSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'labelSets'
+      .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'labelSets'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'labelSets'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.arrowSet,"spacerSet", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'spacerSet'
+      .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'spacerSet'
+      .setProperty("SizeY",0) // EJsS HtmlView.Front End: setting property 'SizeY' for element 'spacerSet'
+      .setProperty("LineWidth",2) // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'spacerSet'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'spacerSet'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightPanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'rightPanel'
