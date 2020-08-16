@@ -361,6 +361,44 @@ var _stringProperties = {};
       // > CustomCode.percentage:40
   }  // > CustomCode.percentage:41
 
+  function toggleColor () {  // > CustomCode.toggleColor:1
+    //This function helps to toggle the color of the selected bar  // > CustomCode.toggleColor:2
+    if (barInteracted == -1){//If no bar is yet to be selected  // > CustomCode.toggleColor:3
+      alert('Select a bar first!');  // > CustomCode.toggleColor:4
+      }  // > CustomCode.toggleColor:5
+     else{//Toggle the respective bars  // > CustomCode.toggleColor:6
+       switch(colors[barInteracted]){  // > CustomCode.toggleColor:7
+         case "blue"://If blue, change to green  // > CustomCode.toggleColor:8
+           colors[barInteracted] = "green";  // > CustomCode.toggleColor:9
+           break;  // > CustomCode.toggleColor:10
+         case "green"://If  green, change to red  // > CustomCode.toggleColor:11
+           colors[barInteracted] = "red";  // > CustomCode.toggleColor:12
+           break;  // > CustomCode.toggleColor:13
+         case "red"://If red, change to pink  // > CustomCode.toggleColor:14
+           colors[barInteracted] = "pink";  // > CustomCode.toggleColor:15
+           break;  // > CustomCode.toggleColor:16
+         case "pink"://If pink, change to yellow  // > CustomCode.toggleColor:17
+           colors[barInteracted] = "yellow";  // > CustomCode.toggleColor:18
+           break;    // > CustomCode.toggleColor:19
+         case "yellow"://If yellow, change to teal  // > CustomCode.toggleColor:20
+           colors[barInteracted] = "teal";  // > CustomCode.toggleColor:21
+           break;  // > CustomCode.toggleColor:22
+         case "teal":// If teal, change to purple  // > CustomCode.toggleColor:23
+           colors[barInteracted] = "purple";  // > CustomCode.toggleColor:24
+           break;  // > CustomCode.toggleColor:25
+         case "purple"://If  purple, change to orange  // > CustomCode.toggleColor:26
+           colors[barInteracted] = "orange";  // > CustomCode.toggleColor:27
+           break;  // > CustomCode.toggleColor:28
+         case "orange":// If orange, change to blue   // > CustomCode.toggleColor:29
+           colors[barInteracted] = "blue";  // > CustomCode.toggleColor:30
+           break;  // > CustomCode.toggleColor:31
+          default://Default set to blue  // > CustomCode.toggleColor:32
+            colors[barInteracted] = "blue";  // > CustomCode.toggleColor:33
+            break;  // > CustomCode.toggleColor:34
+         }  // > CustomCode.toggleColor:35
+      }  // > CustomCode.toggleColor:36
+  }  // > CustomCode.toggleColor:37
+
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
@@ -507,6 +545,8 @@ var _stringProperties = {};
           _view.PercentageButton.linkProperty("Disabled",  function() { return size.length>1?false:true; } ); // Front End linking property 'Disabled' for element 'PercentageButton'
           _view.PercentageButton.setAction("OnClick", percentage); // Front End setting action 'OnClick' for element 'PercentageButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
+          _view.ColorsButton.linkProperty("Disabled",  function() { return barInteracted>-1?false:true; } ); // Front End linking property 'Disabled' for element 'ColorsButton'
+          _view.ColorsButton.setAction("OnClick", toggleColor); // Front End setting action 'OnClick' for element 'ColorsButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
           _view.plottingPanel.linkProperty("TRMessage",  function() { return "barSelected="+barInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
@@ -661,7 +701,6 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
       .setProperty("Tooltip","Colours") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
       .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ColorsButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"LinesButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'LinesButton'
