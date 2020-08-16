@@ -263,6 +263,62 @@ var _stringProperties = {};
       }  // > CustomCode.editSize:4
   }  // > CustomCode.editSize:5
 
+  function ratio () {  // > CustomCode.ratio:1
+    //This function is called when the ratio button is clicked  // > CustomCode.ratio:2
+    //What it does it takes two target bars and divides them into a ratio neatly  // > CustomCode.ratio:3
+    //Prompt for the first bar  // > CustomCode.ratio:4
+    var firstBar = prompt("ID of first bar: ");  // > CustomCode.ratio:5
+    //If its not an int or outside of the array  // > CustomCode.ratio:6
+    if (!isInt(firstBar)||parseInt(firstBar, 10)>size.length-1){  // > CustomCode.ratio:7
+      alert('Invalid selection. Please try again!');//Display error msg  // > CustomCode.ratio:8
+      }  // > CustomCode.ratio:9
+    else {//Else Continues to prompt for the second bar  // > CustomCode.ratio:10
+      var secondBar = prompt("ID of second bar: ");  // > CustomCode.ratio:11
+      //If its not an int or outside of array  // > CustomCode.ratio:12
+      if (!isInt(secondBar)||parseInt(secondBar, 10)>size.length-1){  // > CustomCode.ratio:13
+        alert('Invalid selection. Please try again!');//Display error msg  // > CustomCode.ratio:14
+      }  // > CustomCode.ratio:15
+      else if (firstBar==secondBar){//If same bar is selected  // > CustomCode.ratio:16
+        alert('Cannot pick the same bar! Please try again!');//Display error msg  // > CustomCode.ratio:17
+        }  // > CustomCode.ratio:18
+      else {//Proceed to prompt for the ratio input  // > CustomCode.ratio:19
+        var ratioA = prompt("Ratio = x:y\nx = ");  // > CustomCode.ratio:20
+        var ratioB = prompt("Ratio = x:y\ny = ");  // > CustomCode.ratio:21
+        //If success  // > CustomCode.ratio:22
+        if (isInt(ratioA)&&  isInt(ratioB)&& parseInt(ratioA,10)>0 && parseInt(ratioB,10)>0){ //If the ans is an integer  // > CustomCode.ratio:23
+          alert('Success!');  // > CustomCode.ratio:24
+          //Position both  bars to the left  // > CustomCode.ratio:25
+          posX[firstBar] = -7.5;  // > CustomCode.ratio:26
+          posX[secondBar] = -7.5;  // > CustomCode.ratio:27
+          //Position the bar on top of another  // > CustomCode.ratio:28
+          posY[firstBar] = 5;  // > CustomCode.ratio:29
+          posY[secondBar] = 2.5;  // > CustomCode.ratio:30
+          //Resize the bar accordingly and add ratios  // > CustomCode.ratio:31
+          size[firstBar] = 1;  // > CustomCode.ratio:32
+          for (var i=1;i<ratioA;i++){  // > CustomCode.ratio:33
+            posX.push(posX[firstBar]+i);  // > CustomCode.ratio:34
+            posY.push(posY[firstBar]);  // > CustomCode.ratio:35
+            size.push(1);  // > CustomCode.ratio:36
+            colors.push(colors[firstBar]);  // > CustomCode.ratio:37
+            }  // > CustomCode.ratio:38
+          size[secondBar] = 1;  // > CustomCode.ratio:39
+          for (var i=1;i<ratioB;i++){  // > CustomCode.ratio:40
+            posX.push(posX[secondBar]+i);  // > CustomCode.ratio:41
+            posY.push(posY[secondBar]);  // > CustomCode.ratio:42
+            size.push(1);  // > CustomCode.ratio:43
+            colors.push(colors[secondBar]);  // > CustomCode.ratio:44
+            }  // > CustomCode.ratio:45
+        }  // > CustomCode.ratio:46
+        else{//Else display error  // > CustomCode.ratio:47
+          alert('Invalid ratio! Please try again.');  // > CustomCode.ratio:48
+          }  // > CustomCode.ratio:49
+    }  // > CustomCode.ratio:50
+    }  // > CustomCode.ratio:51
+      // > CustomCode.ratio:52
+      // > CustomCode.ratio:53
+      // > CustomCode.ratio:54
+  }  // > CustomCode.ratio:55
+
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
@@ -407,6 +463,8 @@ var _stringProperties = {};
           _view.sizeSlider.setAction("OnChange", editSize); // Front End setting action 'OnChange' for element 'sizeSlider'
           _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
           _view.fractionButton.setAction("OnClick", fractions); // Front End setting action 'OnClick' for element 'fractionButton'
+          _view.ratioButton.linkProperty("Disabled",  function() { return size.length>1?false:true; } ); // Front End linking property 'Disabled' for element 'ratioButton'
+          _view.ratioButton.setAction("OnClick", ratio); // Front End setting action 'OnClick' for element 'ratioButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
@@ -546,7 +604,6 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"ratioButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ratioButton'
       .setProperty("Tooltip","Ratio") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ratioButton'
       .setProperty("Text",":Ratio") // EJsS HtmlView.Front End: setting property 'Text' for element 'ratioButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'ratioButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
