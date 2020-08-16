@@ -86,6 +86,9 @@ var _stringProperties = {};
   var spacerY; // EjsS Model.Variables.Label Variables.spacerY
   var spacerInteracted; // EjsS Model.Variables.Label Variables.spacerInteracted
   var spacerSize; // EjsS Model.Variables.Label Variables.spacerSize
+  var bracerX; // EjsS Model.Variables.Label Variables.bracerX
+  var bracerY; // EjsS Model.Variables.Label Variables.bracerY
+  var bracerInteracted; // EjsS Model.Variables.Label Variables.bracerInteracted
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -118,6 +121,9 @@ var _stringProperties = {};
       spacerY : spacerY,
       spacerInteracted : spacerInteracted,
       spacerSize : spacerSize,
+      bracerX : bracerX,
+      bracerY : bracerY,
+      bracerInteracted : bracerInteracted,
       font : font
     };
   };
@@ -146,6 +152,9 @@ var _stringProperties = {};
       spacerY : spacerY,
       spacerInteracted : spacerInteracted,
       spacerSize : spacerSize,
+      bracerX : bracerX,
+      bracerY : bracerY,
+      bracerInteracted : bracerInteracted,
       font : font
     };
   };
@@ -171,6 +180,9 @@ var _stringProperties = {};
     if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
     if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
     if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
+    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
+    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
+    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -195,6 +207,9 @@ var _stringProperties = {};
     if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
     if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
     if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
+    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
+    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
+    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -290,6 +305,21 @@ var _stringProperties = {};
     }());
     spacerInteracted = -1; // EjsS Model.Variables.Label Variables.spacerInteracted
     spacerSize = [2,-2]; // EjsS Model.Variables.Label Variables.spacerSize
+    bracerX = new Array(1); // EjsS Model.Variables.Label Variables.bracerX
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.bracerX
+        bracerX[_i0] = -1;  // EjsS Model.Variables.Label Variables.bracerX
+      }
+    }());
+    bracerY = new Array(1); // EjsS Model.Variables.Label Variables.bracerY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.bracerY
+        bracerY[_i0] = -1;  // EjsS Model.Variables.Label Variables.bracerY
+      }
+    }());
+    bracerInteracted = -1; // EjsS Model.Variables.Label Variables.bracerInteracted
   });
 
   _model.addToReset(function() {
@@ -352,6 +382,12 @@ var _stringProperties = {};
     //Sets selection as a spacer  // > CustomCode.Spacer Selection:3
     selection = "spacer";  // > CustomCode.Spacer Selection:4
   }  // > CustomCode.Spacer Selection:5
+
+  function bracerSelection () { // put in onrelease instead of onpress  // > CustomCode.Bracer Selection:1
+    console.log("Bracer Selected: "+bracerInteracted);//Log the selection  // > CustomCode.Bracer Selection:2
+    //Sets selection as a bracer  // > CustomCode.Bracer Selection:3
+    selection = "bracer";  // > CustomCode.Bracer Selection:4
+  }  // > CustomCode.Bracer Selection:5
 
   function editSize () {  // > CustomCode.editSize:1
     if (barInteracted != -1){  // > CustomCode.editSize:2
@@ -612,6 +648,15 @@ var _stringProperties = {};
   selection = "spacer";//Sets last selection to be spacer  // > CustomCode.Create Spacer:7
   }  // > CustomCode.Create Spacer:8
 
+  function createBracer () {  // > CustomCode.Create Bracer:1
+    bracerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Bracer:2
+    bracerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Bracer:3
+  //Get array size  // > CustomCode.Create Bracer:4
+  var arr_size = bracerX.length;  // > CustomCode.Create Bracer:5
+  bracerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bracer:6
+  selection = "bracer";//Sets last selection to be spacer  // > CustomCode.Create Bracer:7
+  }  // > CustomCode.Create Bracer:8
+
   function removeItem () {  // > CustomCode.removeFunction:1
     switch(selection){  // > CustomCode.removeFunction:2
       case "bar":  // > CustomCode.removeFunction:3
@@ -625,7 +670,7 @@ var _stringProperties = {};
           break;  // > CustomCode.removeFunction:11
        case "label":  // > CustomCode.removeFunction:12
          if (labelInteracted > -1) {  // > CustomCode.removeFunction:13
-            labelY[labelInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeFunction:14
+            labelY[labelInteracted] = 99999999;//Hide the label outside of the graph  // > CustomCode.removeFunction:14
             labelInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:15
           }  // > CustomCode.removeFunction:16
           else {  // > CustomCode.removeFunction:17
@@ -634,19 +679,28 @@ var _stringProperties = {};
          break;  // > CustomCode.removeFunction:20
         case "spacer":  // > CustomCode.removeFunction:21
          if (spacerInteracted > -1) {  // > CustomCode.removeFunction:22
-            spacerY[spacerInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeFunction:23
+            spacerY[spacerInteracted] = 99999999;//Hide the spacer outside of the graph  // > CustomCode.removeFunction:23
             spacerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:24
           }  // > CustomCode.removeFunction:25
           else {  // > CustomCode.removeFunction:26
              alert('Select something first!');   // > CustomCode.removeFunction:27
           }  // > CustomCode.removeFunction:28
          break;  // > CustomCode.removeFunction:29
-         default:  // > CustomCode.removeFunction:30
-           alert('Select something first!');   // > CustomCode.removeFunction:31
-           break;  // > CustomCode.removeFunction:32
-      }  // > CustomCode.removeFunction:33
-    selection = "none";  // > CustomCode.removeFunction:34
-  }  // > CustomCode.removeFunction:35
+         case "bracer":  // > CustomCode.removeFunction:30
+         if (bracerInteracted > -1) {  // > CustomCode.removeFunction:31
+            bracerY[bracerInteracted] = 99999999;//Hide the bracer outside of the graph  // > CustomCode.removeFunction:32
+            bracerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:33
+          }  // > CustomCode.removeFunction:34
+          else {  // > CustomCode.removeFunction:35
+             alert('Select something first!');   // > CustomCode.removeFunction:36
+          }  // > CustomCode.removeFunction:37
+         break;  // > CustomCode.removeFunction:38
+         default:  // > CustomCode.removeFunction:39
+           alert('Select something first!');   // > CustomCode.removeFunction:40
+           break;  // > CustomCode.removeFunction:41
+      }  // > CustomCode.removeFunction:42
+    selection = "none";  // > CustomCode.removeFunction:43
+  }  // > CustomCode.removeFunction:44
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
@@ -680,6 +734,7 @@ var _stringProperties = {};
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
           _view.spacerButton.setAction("OnClick", createSpacer); // Front End setting action 'OnClick' for element 'spacerButton'
+          _view.bracerButton.setAction("OnClick", createBracer); // Front End setting action 'OnClick' for element 'bracerButton'
           _view.labelButton.setAction("OnClick", createLabel); // Front End setting action 'OnClick' for element 'labelButton'
           _view.sizeSlider.linkProperty("Value",  function() { return sizeEditor; }, function(_v) { sizeEditor = _v; } ); // Front End linking property 'Value' for element 'sizeSlider'
           _view.sizeSlider.setAction("OnChange", editSize); // Front End setting action 'OnChange' for element 'sizeSlider'
@@ -707,6 +762,11 @@ var _stringProperties = {};
           _view.barSets.linkProperty("X",  function() { return posX; }, function(_v) { posX = _v; } ); // Front End linking property 'X' for element 'barSets'
           _view.barSets.linkProperty("Y",  function() { return posY; }, function(_v) { posY = _v; } ); // Front End linking property 'Y' for element 'barSets'
           _view.barSets.linkProperty("SizeY",  function() { return barHeight; }, function(_v) { barHeight = _v; } ); // Front End linking property 'SizeY' for element 'barSets'
+          _view.bracerSets.linkProperty("X",  function() { return bracerX; }, function(_v) { bracerX = _v; } ); // Front End linking property 'X' for element 'bracerSets'
+          _view.bracerSets.linkProperty("Y",  function() { return bracerY; }, function(_v) { bracerY = _v; } ); // Front End linking property 'Y' for element 'bracerSets'
+          _view.bracerSets.setAction("OnPress", bracerSelection); // Front End setting action 'OnPress' for element 'bracerSets'
+          _view.bracerSets.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'bracerSets'
+          _view.bracerSets.linkProperty("ElementInteracted",  function() { return bracerInteracted; }, function(_v) { bracerInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'bracerSets'
           _view.labelSets.linkProperty("X",  function() { return labelX; }, function(_v) { labelX = _v; } ); // Front End linking property 'X' for element 'labelSets'
           _view.labelSets.linkProperty("Y",  function() { return labelY; }, function(_v) { labelY = _v; } ); // Front End linking property 'Y' for element 'labelSets'
           _view.labelSets.linkProperty("Text",  function() { return labelT; }, function(_v) { labelT = _v; } ); // Front End linking property 'Text' for element 'labelSets'
@@ -799,7 +859,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"bracerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'bracerButton'
       .setProperty("Tooltip","Create Brace") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'bracerButton'
       .setProperty("Text","Brace") // EJsS HtmlView.Front End: setting property 'Text' for element 'bracerButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'bracerButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'bracerButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"labelButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'labelButton'
@@ -910,6 +970,12 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
       .setProperty("LineWidth","0.25vw") // EJsS HtmlView.Front End: setting property 'LineWidth' for element 'barSets'
       .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'barSets'
+      ;
+
+    _view._addElement(EJSS_DRAWING2D.textSet,"bracerSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'bracerSets'
+      .setProperty("EnabledSize","ENABLED_Y") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'bracerSets'
+      .setProperty("Text","}") // EJsS HtmlView.Front End: setting property 'Text' for element 'bracerSets'
+      .setProperty("EnabledPosition","ENABLED_ANY") // EJsS HtmlView.Front End: setting property 'EnabledPosition' for element 'bracerSets'
       ;
 
     _view._addElement(EJSS_DRAWING2D.textSet,"labelSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'labelSets'
