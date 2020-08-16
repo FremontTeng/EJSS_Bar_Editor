@@ -254,6 +254,7 @@ var _stringProperties = {};
     }());
     noOfPieces = 1; // EjsS Model.Variables.Variables.noOfPieces
     sizeEditor = 0.1; // EjsS Model.Variables.Variables.sizeEditor
+    selection = "none"; // EjsS Model.Variables.Variables.selection
   });
 
   _model.addToReset(function() {
@@ -345,6 +346,12 @@ var _stringProperties = {};
     //Sets selection as a label  // > CustomCode.Label Selection:3
     selection = "label";  // > CustomCode.Label Selection:4
   }  // > CustomCode.Label Selection:5
+
+  function spacerSelection () { // put in onrelease instead of onpress  // > CustomCode.Spacer Selection:1
+    console.log("Spacer Selected: "+spacerInteracted);//Log the selection  // > CustomCode.Spacer Selection:2
+    //Sets selection as a spacer  // > CustomCode.Spacer Selection:3
+    selection = "spacer";  // > CustomCode.Spacer Selection:4
+  }  // > CustomCode.Spacer Selection:5
 
   function editSize () {  // > CustomCode.editSize:1
     if (barInteracted != -1){  // > CustomCode.editSize:2
@@ -596,6 +603,15 @@ var _stringProperties = {};
   selection = "label";//Sets last selection to be label  // > CustomCode.Create Label:9
   }  // > CustomCode.Create Label:10
 
+  function createSpacer () {  // > CustomCode.Create Spacer:1
+    spacerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Spacer:2
+    spacerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Spacer:3
+  //Get array size  // > CustomCode.Create Spacer:4
+  var arr_size = spacerX.length;  // > CustomCode.Create Spacer:5
+  spacerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Spacer:6
+  selection = "spacer";//Sets last selection to be spacer  // > CustomCode.Create Spacer:7
+  }  // > CustomCode.Create Spacer:8
+
   function removeItem () {  // > CustomCode.removeFunction:1
     switch(selection){  // > CustomCode.removeFunction:2
       case "bar":  // > CustomCode.removeFunction:3
@@ -615,9 +631,22 @@ var _stringProperties = {};
           else {  // > CustomCode.removeFunction:17
              alert('Select something first!');   // > CustomCode.removeFunction:18
           }  // > CustomCode.removeFunction:19
-      }  // > CustomCode.removeFunction:20
-      // > CustomCode.removeFunction:21
-  }  // > CustomCode.removeFunction:22
+         break;  // > CustomCode.removeFunction:20
+        case "spacer":  // > CustomCode.removeFunction:21
+         if (spacerInteracted > -1) {  // > CustomCode.removeFunction:22
+            spacerY[spacerInteracted] = 99999999;//Hide the bar outside of the graph  // > CustomCode.removeFunction:23
+            spacerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:24
+          }  // > CustomCode.removeFunction:25
+          else {  // > CustomCode.removeFunction:26
+             alert('Select something first!');   // > CustomCode.removeFunction:27
+          }  // > CustomCode.removeFunction:28
+         break;  // > CustomCode.removeFunction:29
+         default:  // > CustomCode.removeFunction:30
+           alert('Select something first!');   // > CustomCode.removeFunction:31
+           break;  // > CustomCode.removeFunction:32
+      }  // > CustomCode.removeFunction:33
+    selection = "none";  // > CustomCode.removeFunction:34
+  }  // > CustomCode.removeFunction:35
 
   _model.addToInitialization(function() {
     if (!__pagesEnabled["Init Page"]) return;
@@ -650,6 +679,7 @@ var _stringProperties = {};
         case 0:
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.spacerButton.setAction("OnClick", createSpacer); // Front End setting action 'OnClick' for element 'spacerButton'
           _view.labelButton.setAction("OnClick", createLabel); // Front End setting action 'OnClick' for element 'labelButton'
           _view.sizeSlider.linkProperty("Value",  function() { return sizeEditor; }, function(_v) { sizeEditor = _v; } ); // Front End linking property 'Value' for element 'sizeSlider'
           _view.sizeSlider.setAction("OnChange", editSize); // Front End setting action 'OnChange' for element 'sizeSlider'
@@ -664,7 +694,7 @@ var _stringProperties = {};
           _view.ColorsButton.setAction("OnClick", toggleColor); // Front End setting action 'OnClick' for element 'ColorsButton'
           _view.RemoveButton.setAction("OnClick", removeItem); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
-          _view.plottingPanel.linkProperty("TRMessage",  function() { return "selection = "+selection+"\nbarSelected="+barInteracted+"\nlabelSelected = "+labelInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
+          _view.plottingPanel.linkProperty("TRMessage",  function() { return "selection = "+selection+"\nBar ID="+barInteracted+"\nLabel ID = "+labelInteracted+"\nSpacer ID = "+spacerInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
           _view.plottingPanel.linkProperty("TLMessage",  function() { return "size="+size+"\nposX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
@@ -686,6 +716,7 @@ var _stringProperties = {};
           _view.spacerSet.linkProperty("SizeX",  function() { return spacerSize; }, function(_v) { spacerSize = _v; } ); // Front End linking property 'SizeX' for element 'spacerSet'
           _view.spacerSet.linkProperty("X",  function() { return spacerX; }, function(_v) { spacerX = _v; } ); // Front End linking property 'X' for element 'spacerSet'
           _view.spacerSet.linkProperty("Y",  function() { return spacerY; }, function(_v) { spacerY = _v; } ); // Front End linking property 'Y' for element 'spacerSet'
+          _view.spacerSet.setAction("OnPress", spacerSelection); // Front End setting action 'OnPress' for element 'spacerSet'
           _view.spacerSet.linkProperty("ElementInteracted",  function() { return spacerInteracted; }, function(_v) { spacerInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'spacerSet'
           break;
       } // end of switch
@@ -762,7 +793,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"spacerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'spacerButton'
       .setProperty("Tooltip","Create Spacer") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'spacerButton'
       .setProperty("Text","Spacer") // EJsS HtmlView.Front End: setting property 'Text' for element 'spacerButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'spacerButton'
+      .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'spacerButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"bracerButton", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'bracerButton'
