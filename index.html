@@ -75,6 +75,7 @@ var _stringProperties = {};
   var barInteracted; // EjsS Model.Variables.Variables.barInteracted
   var colors; // EjsS Model.Variables.Variables.colors
   var noOfPieces; // EjsS Model.Variables.Variables.noOfPieces
+  var sizeEditor; // EjsS Model.Variables.Variables.sizeEditor
 
   var font; // EjsS Model.Variables.Visualization.font
 
@@ -97,6 +98,7 @@ var _stringProperties = {};
       barInteracted : barInteracted,
       colors : colors,
       noOfPieces : noOfPieces,
+      sizeEditor : sizeEditor,
       font : font
     };
   };
@@ -115,6 +117,7 @@ var _stringProperties = {};
       barInteracted : barInteracted,
       colors : colors,
       noOfPieces : noOfPieces,
+      sizeEditor : sizeEditor,
       font : font
     };
   };
@@ -130,6 +133,7 @@ var _stringProperties = {};
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
+    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -144,6 +148,7 @@ var _stringProperties = {};
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.colors != "undefined") colors = json.colors;
     if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
+    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
     if(typeof json.font != "undefined") font = json.font;
   };
 
@@ -202,6 +207,7 @@ var _stringProperties = {};
       }
     }());
     noOfPieces = 1; // EjsS Model.Variables.Variables.noOfPieces
+    sizeEditor = 0.1; // EjsS Model.Variables.Variables.sizeEditor
   });
 
   _model.addToReset(function() {
@@ -250,6 +256,12 @@ var _stringProperties = {};
       }  // > CustomCode.Bar Selection:29
     }  // > CustomCode.Bar Selection:30
   }  // > CustomCode.Bar Selection:31
+
+  function editSize () {  // > CustomCode.editSize:1
+    if (barInteracted != -1){  // > CustomCode.editSize:2
+      size[barInteracted] = sizeEditor;  // > CustomCode.editSize:3
+      }  // > CustomCode.editSize:4
+  }  // > CustomCode.editSize:5
 
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
@@ -391,13 +403,15 @@ var _stringProperties = {};
         case 0:
           _view.topLabel.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'topLabel'
           _view.createBarButton.setAction("OnClick", createBar); // Front End setting action 'OnClick' for element 'createBarButton'
+          _view.sizeSlider.linkProperty("Value",  function() { return sizeEditor; }, function(_v) { sizeEditor = _v; } ); // Front End linking property 'Value' for element 'sizeSlider'
+          _view.sizeSlider.setAction("OnChange", editSize); // Front End setting action 'OnChange' for element 'sizeSlider'
           _view.dividerButton.setAction("OnClick", divider); // Front End setting action 'OnClick' for element 'dividerButton'
           _view.fractionButton.setAction("OnClick", fractions); // Front End setting action 'OnClick' for element 'fractionButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
           _view.plottingPanel.linkProperty("TRMessage",  function() { return "barSelected="+barInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
-          _view.plottingPanel.linkProperty("TLMessage",  function() { return "posX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
+          _view.plottingPanel.linkProperty("TLMessage",  function() { return "size="+size+"\nposX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
           _view.barSets.setAction("OnDoubleClick", function(_data,_info) {
   alert ("I pressed bar :"+barInteracted);
@@ -466,7 +480,7 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"controlPanel", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'controlPanel'
-      .setProperty("Width",400) // EJsS HtmlView.Front End: setting property 'Width' for element 'controlPanel'
+      .setProperty("Width",500) // EJsS HtmlView.Front End: setting property 'Width' for element 'controlPanel'
       .setProperty("CSS",{"left":"0"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'controlPanel'
       .setProperty("Display","inline-block") // EJsS HtmlView.Front End: setting property 'Display' for element 'controlPanel'
       ;
@@ -497,6 +511,19 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Tooltip","Create Label") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'labelButton'
       .setProperty("Text","Label") // EJsS HtmlView.Front End: setting property 'Text' for element 'labelButton'
       .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.imageAndTextButton,"sizeLabel", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeLabel'
+      .setProperty("Text","Size Editor") // EJsS HtmlView.Front End: setting property 'Text' for element 'sizeLabel'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.slider,"sizeSlider", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeSlider'
+      .setProperty("Minimum",0.1) // EJsS HtmlView.Front End: setting property 'Minimum' for element 'sizeSlider'
+      .setProperty("Maximum",10) // EJsS HtmlView.Front End: setting property 'Maximum' for element 'sizeSlider'
+      .setProperty("ShowText",true) // EJsS HtmlView.Front End: setting property 'ShowText' for element 'sizeSlider'
+      .setProperty("Format","0.1") // EJsS HtmlView.Front End: setting property 'Format' for element 'sizeSlider'
+      .setProperty("Tooltip","Size Slider") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'sizeSlider'
+      .setProperty("Step",0.1) // EJsS HtmlView.Front End: setting property 'Step' for element 'sizeSlider'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"rightTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'rightTools'
