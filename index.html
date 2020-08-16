@@ -319,6 +319,48 @@ var _stringProperties = {};
       // > CustomCode.ratio:54
   }  // > CustomCode.ratio:55
 
+  function percentage () {  // > CustomCode.percentage:1
+    //This function is called when the percentage button is clicked  // > CustomCode.percentage:2
+    //What it does it takes two target bars and resizes them into their percentages neatly  // > CustomCode.percentage:3
+    //Prompt for the first bar  // > CustomCode.percentage:4
+    var firstBar = prompt("ID of first bar: ");  // > CustomCode.percentage:5
+    //If its not an int or outside of the array  // > CustomCode.percentage:6
+    if (!isInt(firstBar)||parseInt(firstBar, 10)>size.length-1){  // > CustomCode.percentage:7
+      alert('Invalid selection. Please try again!');//Display error msg  // > CustomCode.percentage:8
+      }  // > CustomCode.percentage:9
+    else {//Else Continues to prompt for the second bar  // > CustomCode.percentage:10
+      var secondBar = prompt("ID of second bar: ");  // > CustomCode.percentage:11
+      //If its not an int or outside of array  // > CustomCode.percentage:12
+      if (!isInt(secondBar)||parseInt(secondBar, 10)>size.length-1){  // > CustomCode.percentage:13
+        alert('Invalid selection. Please try again!');//Display error msg  // > CustomCode.percentage:14
+      }  // > CustomCode.percentage:15
+      else if (firstBar==secondBar){//If same bar is selected  // > CustomCode.percentage:16
+        alert('Cannot pick the same bar! Please try again!');//Display error msg  // > CustomCode.percentage:17
+        }  // > CustomCode.percentage:18
+      else {//Proceed to prompt for the percentage input  // > CustomCode.percentage:19
+        var  percentageInput = prompt("Percentage A = 100%\nPercentage B = ");  // > CustomCode.percentage:20
+        //If success  // > CustomCode.percentage:21
+        if (isInt( percentageInput) && parseInt(percentageInput, 10)>0){ //If the ans is an integer  // > CustomCode.percentage:22
+          alert('Success!');  // > CustomCode.percentage:23
+          //Position both  bars to the left  // > CustomCode.percentage:24
+          posX[firstBar] = -7.5;  // > CustomCode.percentage:25
+          posX[secondBar] = -7.5;  // > CustomCode.percentage:26
+          //Position the bar on top of another  // > CustomCode.percentage:27
+          posY[firstBar] = 5;  // > CustomCode.percentage:28
+          posY[secondBar] = 2.5;  // > CustomCode.percentage:29
+          //Resize the bar accordingly  // > CustomCode.percentage:30
+          size[secondBar] = size[firstBar]/100*percentageInput;  // > CustomCode.percentage:31
+        }  // > CustomCode.percentage:32
+        else{//Else display error  // > CustomCode.percentage:33
+          alert('Invalid  percentage! Please try again.');  // > CustomCode.percentage:34
+          }  // > CustomCode.percentage:35
+    }  // > CustomCode.percentage:36
+    }  // > CustomCode.percentage:37
+      // > CustomCode.percentage:38
+      // > CustomCode.percentage:39
+      // > CustomCode.percentage:40
+  }  // > CustomCode.percentage:41
+
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
@@ -395,12 +437,9 @@ var _stringProperties = {};
   function alignLeft () {  // > CustomCode.AlignLeft:1
     for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
     //  posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
-      // > CustomCode.AlignLeft:4
-      // > CustomCode.AlignLeft:5
-      // > CustomCode.AlignLeft:6
-      posX[i] = -5; // new Align due to resize to -10 to 10 instead of -100 to 100  // > CustomCode.AlignLeft:7
-      }  // > CustomCode.AlignLeft:8
-  }  // > CustomCode.AlignLeft:9
+      posX[i] = -5; // new Align due to resize to -10 to 10 instead of -100 to 100  // > CustomCode.AlignLeft:4
+      }  // > CustomCode.AlignLeft:5
+  }  // > CustomCode.AlignLeft:6
 
   function createBar () {  // > CustomCode.Create Bar Function:1
   if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:2
@@ -465,6 +504,8 @@ var _stringProperties = {};
           _view.fractionButton.setAction("OnClick", fractions); // Front End setting action 'OnClick' for element 'fractionButton'
           _view.ratioButton.linkProperty("Disabled",  function() { return size.length>1?false:true; } ); // Front End linking property 'Disabled' for element 'ratioButton'
           _view.ratioButton.setAction("OnClick", ratio); // Front End setting action 'OnClick' for element 'ratioButton'
+          _view.PercentageButton.linkProperty("Disabled",  function() { return size.length>1?false:true; } ); // Front End linking property 'Disabled' for element 'PercentageButton'
+          _view.PercentageButton.setAction("OnClick", percentage); // Front End setting action 'OnClick' for element 'PercentageButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
           _view.RemoveButton.setAction("OnClick", removeBar); // Front End setting action 'OnClick' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
@@ -609,7 +650,6 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_INTERFACE.button,"PercentageButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'PercentageButton'
       .setProperty("Tooltip","Percentage") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'PercentageButton'
       .setProperty("Text","%Percentage") // EJsS HtmlView.Front End: setting property 'Text' for element 'PercentageButton'
-      .setProperty("Disabled",true) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'PercentageButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
