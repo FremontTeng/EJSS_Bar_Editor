@@ -221,14 +221,35 @@ var _stringProperties = {};
 
   function bar_Selection () { // put in onrelease instead of onpress  // > CustomCode.Bar Selection:1
     console.log("Bar Selected: "+barInteracted);//Log the selection  // > CustomCode.Bar Selection:2
-  // need to add extra code to handle the divider mnode,  // > CustomCode.Bar Selection:3
-  // example if divide by 4  // > CustomCode.Bar Selection:4
-  // on release, it should snap to every 10/4 instead of 10 as above //lookang added snapping     // > CustomCode.Bar Selection:5
-  //posX[barInteracted] = Math.round(posX[barInteracted]/10)*10/noOfPieces; //lookang added snapping to nearest 10 but   // > CustomCode.Bar Selection:6
-  //posY[barInteracted] = Math.round(posY[barInteracted]/10)*10/noOfPieces;  // > CustomCode.Bar Selection:7
-  posX[barInteracted] = Math.round(posX[barInteracted]); //Snap to nearest 0.1  // > CustomCode.Bar Selection:8
-  posY[barInteracted] = Math.round(posY[barInteracted]);//Snapped to nearest 0.1  // > CustomCode.Bar Selection:9
-  }  // > CustomCode.Bar Selection:10
+  // Snapping Code by Frem  // > CustomCode.Bar Selection:3
+  //Loop for all elements in a set  // > CustomCode.Bar Selection:4
+  for (var i=0;i<posX.length;i++){  // > CustomCode.Bar Selection:5
+    if (i != barInteracted){//Ignore the target bar  // > CustomCode.Bar Selection:6
+      //If condition to check if the interacted bar is touching any other bar  // > CustomCode.Bar Selection:7
+      //This one checks if the interacting bar is touching the top right of the i bar  // > CustomCode.Bar Selection:8
+      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&& ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))       {  // > CustomCode.Bar Selection:9
+        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:10
+        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:11
+        }  // > CustomCode.Bar Selection:12
+       //This one checks if the interacting bar is touching the top left of the i bar  // > CustomCode.Bar Selection:13
+      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]<posY[barInteracted])&& (posY[i]+barHeight>posY[barInteracted]) ))     {  // > CustomCode.Bar Selection:14
+        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:15
+        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:16
+        }  // > CustomCode.Bar Selection:17
+          // > CustomCode.Bar Selection:18
+      //This one checks if the interacting bar is touching the bottom right of the i bar  // > CustomCode.Bar Selection:19
+      if ((posX[i]<posX[barInteracted])&& (posX[i]+size[i]>posX[barInteracted])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){  // > CustomCode.Bar Selection:20
+        posX[barInteracted] = posX[i]+size[i]; //Snap to the back of the nearest bar  // > CustomCode.Bar Selection:21
+        posY[barInteracted] = posY[i];//Snapped to back of the nearest bar  // > CustomCode.Bar Selection:22
+        }  // > CustomCode.Bar Selection:23
+       //This one checks if the interacting bar is touching the bottom left of the i bar  // > CustomCode.Bar Selection:24
+      if ((posX[i]>posX[barInteracted])&& (posX[barInteracted]+size[barInteracted]>posX[i])&&  ((posY[i]==posY[barInteracted])|| (posY[i]>posY[barInteracted])&& (posY[i]<barHeight+posY[barInteracted]) )){      // > CustomCode.Bar Selection:25
+        posX[barInteracted] = posX[i]-size[barInteracted]; //Snap to the front of the nearest bar  // > CustomCode.Bar Selection:26
+        posY[barInteracted] = posY[i];  // > CustomCode.Bar Selection:27
+        }    // > CustomCode.Bar Selection:28
+      }  // > CustomCode.Bar Selection:29
+    }  // > CustomCode.Bar Selection:30
+  }  // > CustomCode.Bar Selection:31
 
   function divider () {  // > CustomCode.divider:1
     //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
@@ -570,6 +591,7 @@ function MaPS_2020_View_0 (_topFrame) {
     _view._addElement(EJSS_DRAWING2D.shapeSet,"barSets", _view.plottingPanel) // EJsS HtmlView.Front End: declaration of element 'barSets'
       .setProperty("RelativePosition","WEST") // EJsS HtmlView.Front End: setting property 'RelativePosition' for element 'barSets'
       .setProperty("ShapeType","RECTANGLE") // EJsS HtmlView.Front End: setting property 'ShapeType' for element 'barSets'
+      .setProperty("ResizesGroup",true) // EJsS HtmlView.Front End: setting property 'ResizesGroup' for element 'barSets'
       .setProperty("Sensitivity",0) // EJsS HtmlView.Front End: setting property 'Sensitivity' for element 'barSets'
       .setProperty("EnabledSize","ENABLED_X") // EJsS HtmlView.Front End: setting property 'EnabledSize' for element 'barSets'
       .setProperty("LineColor","black") // EJsS HtmlView.Front End: setting property 'LineColor' for element 'barSets'
