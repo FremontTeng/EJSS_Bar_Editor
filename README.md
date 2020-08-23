@@ -1,5 +1,6 @@
 # Easy JavaScript Simulation MAthematics PlaySpace (MapS) Bar Model Editor
 Last Update: 23/08/2020
+
 Deployed on: https://fremontteng.github.io/EJSS_Bar_Editor/
 
 Attempt to replicate a bar model simulation using EJSS
