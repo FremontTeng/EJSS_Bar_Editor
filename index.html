@@ -68,31 +68,34 @@ var _stringProperties = {};
   var startingPosX; // EjsS Model.Variables.Variables.startingPosX
   var startingPosY; // EjsS Model.Variables.Variables.startingPosY
   var startingSize; // EjsS Model.Variables.Variables.startingSize
-  var barHeight; // EjsS Model.Variables.Variables.barHeight
-  var posX; // EjsS Model.Variables.Variables.posX
-  var posY; // EjsS Model.Variables.Variables.posY
-  var size; // EjsS Model.Variables.Variables.size
-  var barInteracted; // EjsS Model.Variables.Variables.barInteracted
-  var barVisible; // EjsS Model.Variables.Variables.barVisible
-  var colors; // EjsS Model.Variables.Variables.colors
   var noOfPieces; // EjsS Model.Variables.Variables.noOfPieces
   var sizeEditor; // EjsS Model.Variables.Variables.sizeEditor
   var selection; // EjsS Model.Variables.Variables.selection
 
-  var labelX; // EjsS Model.Variables.Label Variables.labelX
-  var labelY; // EjsS Model.Variables.Label Variables.labelY
-  var labelT; // EjsS Model.Variables.Label Variables.labelT
-  var labelInteracted; // EjsS Model.Variables.Label Variables.labelInteracted
-  var labelVisible; // EjsS Model.Variables.Label Variables.labelVisible
-  var spacerX; // EjsS Model.Variables.Label Variables.spacerX
-  var spacerY; // EjsS Model.Variables.Label Variables.spacerY
-  var spacerInteracted; // EjsS Model.Variables.Label Variables.spacerInteracted
-  var spacerSize; // EjsS Model.Variables.Label Variables.spacerSize
-  var spacerVisible; // EjsS Model.Variables.Label Variables.spacerVisible
-  var bracerX; // EjsS Model.Variables.Label Variables.bracerX
-  var bracerY; // EjsS Model.Variables.Label Variables.bracerY
-  var bracerInteracted; // EjsS Model.Variables.Label Variables.bracerInteracted
-  var bracerVisible; // EjsS Model.Variables.Label Variables.bracerVisible
+  var posX; // EjsS Model.Variables.Bars.posX
+  var posY; // EjsS Model.Variables.Bars.posY
+  var size; // EjsS Model.Variables.Bars.size
+  var barInteracted; // EjsS Model.Variables.Bars.barInteracted
+  var barVisible; // EjsS Model.Variables.Bars.barVisible
+  var barHeight; // EjsS Model.Variables.Bars.barHeight
+  var colors; // EjsS Model.Variables.Bars.colors
+
+  var labelX; // EjsS Model.Variables.Labels.labelX
+  var labelY; // EjsS Model.Variables.Labels.labelY
+  var labelT; // EjsS Model.Variables.Labels.labelT
+  var labelInteracted; // EjsS Model.Variables.Labels.labelInteracted
+  var labelVisible; // EjsS Model.Variables.Labels.labelVisible
+
+  var bracerX; // EjsS Model.Variables.Bracers.bracerX
+  var bracerY; // EjsS Model.Variables.Bracers.bracerY
+  var bracerInteracted; // EjsS Model.Variables.Bracers.bracerInteracted
+  var bracerVisible; // EjsS Model.Variables.Bracers.bracerVisible
+
+  var spacerX; // EjsS Model.Variables.Spacers.spacerX
+  var spacerY; // EjsS Model.Variables.Spacers.spacerY
+  var spacerInteracted; // EjsS Model.Variables.Spacers.spacerInteracted
+  var spacerSize; // EjsS Model.Variables.Spacers.spacerSize
+  var spacerVisible; // EjsS Model.Variables.Spacers.spacerVisible
 
   var font; // EjsS Model.Variables.Visualization.font
   var fontb; // EjsS Model.Variables.Visualization.fontb
@@ -109,30 +112,30 @@ var _stringProperties = {};
       startingPosX : startingPosX,
       startingPosY : startingPosY,
       startingSize : startingSize,
-      barHeight : barHeight,
+      noOfPieces : noOfPieces,
+      sizeEditor : sizeEditor,
+      selection : selection,
       posX : posX,
       posY : posY,
       size : size,
       barInteracted : barInteracted,
       barVisible : barVisible,
+      barHeight : barHeight,
       colors : colors,
-      noOfPieces : noOfPieces,
-      sizeEditor : sizeEditor,
-      selection : selection,
       labelX : labelX,
       labelY : labelY,
       labelT : labelT,
       labelInteracted : labelInteracted,
       labelVisible : labelVisible,
+      bracerX : bracerX,
+      bracerY : bracerY,
+      bracerInteracted : bracerInteracted,
+      bracerVisible : bracerVisible,
       spacerX : spacerX,
       spacerY : spacerY,
       spacerInteracted : spacerInteracted,
       spacerSize : spacerSize,
       spacerVisible : spacerVisible,
-      bracerX : bracerX,
-      bracerY : bracerY,
-      bracerInteracted : bracerInteracted,
-      bracerVisible : bracerVisible,
       font : font,
       fontb : fontb
     };
@@ -145,30 +148,30 @@ var _stringProperties = {};
       startingPosX : startingPosX,
       startingPosY : startingPosY,
       startingSize : startingSize,
-      barHeight : barHeight,
+      noOfPieces : noOfPieces,
+      sizeEditor : sizeEditor,
+      selection : selection,
       posX : posX,
       posY : posY,
       size : size,
       barInteracted : barInteracted,
       barVisible : barVisible,
+      barHeight : barHeight,
       colors : colors,
-      noOfPieces : noOfPieces,
-      sizeEditor : sizeEditor,
-      selection : selection,
       labelX : labelX,
       labelY : labelY,
       labelT : labelT,
       labelInteracted : labelInteracted,
       labelVisible : labelVisible,
+      bracerX : bracerX,
+      bracerY : bracerY,
+      bracerInteracted : bracerInteracted,
+      bracerVisible : bracerVisible,
       spacerX : spacerX,
       spacerY : spacerY,
       spacerInteracted : spacerInteracted,
       spacerSize : spacerSize,
       spacerVisible : spacerVisible,
-      bracerX : bracerX,
-      bracerY : bracerY,
-      bracerInteracted : bracerInteracted,
-      bracerVisible : bracerVisible,
       font : font,
       fontb : fontb
     };
@@ -178,30 +181,30 @@ var _stringProperties = {};
     if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
-    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
+    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
+    if(typeof json.selection != "undefined") selection = json.selection;
     if(typeof json.posX != "undefined") posX = json.posX;
     if(typeof json.posY != "undefined") posY = json.posY;
     if(typeof json.size != "undefined") size = json.size;
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.barVisible != "undefined") barVisible = json.barVisible;
+    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
     if(typeof json.colors != "undefined") colors = json.colors;
-    if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
-    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
-    if(typeof json.selection != "undefined") selection = json.selection;
     if(typeof json.labelX != "undefined") labelX = json.labelX;
     if(typeof json.labelY != "undefined") labelY = json.labelY;
     if(typeof json.labelT != "undefined") labelT = json.labelT;
     if(typeof json.labelInteracted != "undefined") labelInteracted = json.labelInteracted;
     if(typeof json.labelVisible != "undefined") labelVisible = json.labelVisible;
+    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
+    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
+    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
+    if(typeof json.bracerVisible != "undefined") bracerVisible = json.bracerVisible;
     if(typeof json.spacerX != "undefined") spacerX = json.spacerX;
     if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
     if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
     if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
     if(typeof json.spacerVisible != "undefined") spacerVisible = json.spacerVisible;
-    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
-    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
-    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
-    if(typeof json.bracerVisible != "undefined") bracerVisible = json.bracerVisible;
     if(typeof json.font != "undefined") font = json.font;
     if(typeof json.fontb != "undefined") fontb = json.fontb;
   };
@@ -210,30 +213,30 @@ var _stringProperties = {};
     if(typeof json.startingPosX != "undefined") startingPosX = json.startingPosX;
     if(typeof json.startingPosY != "undefined") startingPosY = json.startingPosY;
     if(typeof json.startingSize != "undefined") startingSize = json.startingSize;
-    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
+    if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
+    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
+    if(typeof json.selection != "undefined") selection = json.selection;
     if(typeof json.posX != "undefined") posX = json.posX;
     if(typeof json.posY != "undefined") posY = json.posY;
     if(typeof json.size != "undefined") size = json.size;
     if(typeof json.barInteracted != "undefined") barInteracted = json.barInteracted;
     if(typeof json.barVisible != "undefined") barVisible = json.barVisible;
+    if(typeof json.barHeight != "undefined") barHeight = json.barHeight;
     if(typeof json.colors != "undefined") colors = json.colors;
-    if(typeof json.noOfPieces != "undefined") noOfPieces = json.noOfPieces;
-    if(typeof json.sizeEditor != "undefined") sizeEditor = json.sizeEditor;
-    if(typeof json.selection != "undefined") selection = json.selection;
     if(typeof json.labelX != "undefined") labelX = json.labelX;
     if(typeof json.labelY != "undefined") labelY = json.labelY;
     if(typeof json.labelT != "undefined") labelT = json.labelT;
     if(typeof json.labelInteracted != "undefined") labelInteracted = json.labelInteracted;
     if(typeof json.labelVisible != "undefined") labelVisible = json.labelVisible;
+    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
+    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
+    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
+    if(typeof json.bracerVisible != "undefined") bracerVisible = json.bracerVisible;
     if(typeof json.spacerX != "undefined") spacerX = json.spacerX;
     if(typeof json.spacerY != "undefined") spacerY = json.spacerY;
     if(typeof json.spacerInteracted != "undefined") spacerInteracted = json.spacerInteracted;
     if(typeof json.spacerSize != "undefined") spacerSize = json.spacerSize;
     if(typeof json.spacerVisible != "undefined") spacerVisible = json.spacerVisible;
-    if(typeof json.bracerX != "undefined") bracerX = json.bracerX;
-    if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
-    if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
-    if(typeof json.bracerVisible != "undefined") bracerVisible = json.bracerVisible;
     if(typeof json.font != "undefined") font = json.font;
     if(typeof json.fontb != "undefined") fontb = json.fontb;
   };
@@ -255,118 +258,126 @@ var _stringProperties = {};
   };
 
   _model.addToReset(function() {
-    __pagesEnabled["Init Page"] = true;
   });
 
   _model.addToReset(function() {
     startingPosX = 0; // EjsS Model.Variables.Variables.startingPosX
     startingPosY = 0; // EjsS Model.Variables.Variables.startingPosY
     startingSize = 5; // EjsS Model.Variables.Variables.startingSize
-    barHeight = 1; // EjsS Model.Variables.Variables.barHeight
-    posX = new Array(1); // EjsS Model.Variables.Variables.posX
-    (function () {
-      var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posX
-        posX[_i0] = 0;  // EjsS Model.Variables.Variables.posX
-      }
-    }());
-    posY = new Array(1); // EjsS Model.Variables.Variables.posY
-    (function () {
-      var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.posY
-        posY[_i0] = -1;  // EjsS Model.Variables.Variables.posY
-      }
-    }());
-    size = new Array(1); // EjsS Model.Variables.Variables.size
-    (function () {
-      var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.size
-        size[_i0] = 5;  // EjsS Model.Variables.Variables.size
-      }
-    }());
-    barInteracted = -1; // EjsS Model.Variables.Variables.barInteracted
-    barVisible = new Array(1); // EjsS Model.Variables.Variables.barVisible
-    (function () {
-      var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.barVisible
-        barVisible[_i0] = true;  // EjsS Model.Variables.Variables.barVisible
-      }
-    }());
-    colors = new Array(1); // EjsS Model.Variables.Variables.colors
-    (function () {
-      var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Variables.colors
-        colors[_i0] = "blue";  // EjsS Model.Variables.Variables.colors
-      }
-    }());
     noOfPieces = 1; // EjsS Model.Variables.Variables.noOfPieces
     sizeEditor = 0.1; // EjsS Model.Variables.Variables.sizeEditor
     selection = "none"; // EjsS Model.Variables.Variables.selection
   });
 
   _model.addToReset(function() {
-    labelX = new Array(1); // EjsS Model.Variables.Label Variables.labelX
+    posX = new Array(1); // EjsS Model.Variables.Bars.posX
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelX
-        labelX[_i0] = 2.5;  // EjsS Model.Variables.Label Variables.labelX
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bars.posX
+        posX[_i0] = 0;  // EjsS Model.Variables.Bars.posX
       }
     }());
-    labelY = new Array(1); // EjsS Model.Variables.Label Variables.labelY
+    posY = new Array(1); // EjsS Model.Variables.Bars.posY
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelY
-        labelY[_i0] = 0;  // EjsS Model.Variables.Label Variables.labelY
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bars.posY
+        posY[_i0] = -1;  // EjsS Model.Variables.Bars.posY
       }
     }());
-    labelT = new Array(1); // EjsS Model.Variables.Label Variables.labelT
+    size = new Array(1); // EjsS Model.Variables.Bars.size
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelT
-        labelT[_i0] = "5.0";  // EjsS Model.Variables.Label Variables.labelT
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bars.size
+        size[_i0] = 5;  // EjsS Model.Variables.Bars.size
       }
     }());
-    labelInteracted = -1; // EjsS Model.Variables.Label Variables.labelInteracted
-    labelVisible = new Array(1); // EjsS Model.Variables.Label Variables.labelVisible
+    barInteracted = -1; // EjsS Model.Variables.Bars.barInteracted
+    barVisible = new Array(1); // EjsS Model.Variables.Bars.barVisible
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.labelVisible
-        labelVisible[_i0] = true;  // EjsS Model.Variables.Label Variables.labelVisible
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bars.barVisible
+        barVisible[_i0] = true;  // EjsS Model.Variables.Bars.barVisible
       }
     }());
-    spacerX = [3,2]; // EjsS Model.Variables.Label Variables.spacerX
-    spacerY = new Array(1); // EjsS Model.Variables.Label Variables.spacerY
+    barHeight = 1; // EjsS Model.Variables.Bars.barHeight
+    colors = new Array(1); // EjsS Model.Variables.Bars.colors
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.spacerY
-        spacerY[_i0] = 0;  // EjsS Model.Variables.Label Variables.spacerY
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bars.colors
+        colors[_i0] = "blue";  // EjsS Model.Variables.Bars.colors
       }
     }());
-    spacerInteracted = -1; // EjsS Model.Variables.Label Variables.spacerInteracted
-    spacerSize = [2,-2]; // EjsS Model.Variables.Label Variables.spacerSize
-    spacerVisible = [true,true]; // EjsS Model.Variables.Label Variables.spacerVisible
-    bracerX = new Array(1); // EjsS Model.Variables.Label Variables.bracerX
+  });
+
+  _model.addToReset(function() {
+    labelX = new Array(1); // EjsS Model.Variables.Labels.labelX
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.bracerX
-        bracerX[_i0] = -1;  // EjsS Model.Variables.Label Variables.bracerX
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Labels.labelX
+        labelX[_i0] = 2.5;  // EjsS Model.Variables.Labels.labelX
       }
     }());
-    bracerY = new Array(1); // EjsS Model.Variables.Label Variables.bracerY
+    labelY = new Array(1); // EjsS Model.Variables.Labels.labelY
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.bracerY
-        bracerY[_i0] = -1;  // EjsS Model.Variables.Label Variables.bracerY
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Labels.labelY
+        labelY[_i0] = 0;  // EjsS Model.Variables.Labels.labelY
       }
     }());
-    bracerInteracted = -1; // EjsS Model.Variables.Label Variables.bracerInteracted
-    bracerVisible = new Array(1); // EjsS Model.Variables.Label Variables.bracerVisible
+    labelT = new Array(1); // EjsS Model.Variables.Labels.labelT
     (function () {
       var _i0;
-      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Label Variables.bracerVisible
-        bracerVisible[_i0] = true;  // EjsS Model.Variables.Label Variables.bracerVisible
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Labels.labelT
+        labelT[_i0] = "5.0";  // EjsS Model.Variables.Labels.labelT
       }
     }());
+    labelInteracted = -1; // EjsS Model.Variables.Labels.labelInteracted
+    labelVisible = new Array(1); // EjsS Model.Variables.Labels.labelVisible
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Labels.labelVisible
+        labelVisible[_i0] = true;  // EjsS Model.Variables.Labels.labelVisible
+      }
+    }());
+  });
+
+  _model.addToReset(function() {
+    bracerX = new Array(1); // EjsS Model.Variables.Bracers.bracerX
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bracers.bracerX
+        bracerX[_i0] = -1;  // EjsS Model.Variables.Bracers.bracerX
+      }
+    }());
+    bracerY = new Array(1); // EjsS Model.Variables.Bracers.bracerY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bracers.bracerY
+        bracerY[_i0] = -1;  // EjsS Model.Variables.Bracers.bracerY
+      }
+    }());
+    bracerInteracted = -1; // EjsS Model.Variables.Bracers.bracerInteracted
+    bracerVisible = new Array(1); // EjsS Model.Variables.Bracers.bracerVisible
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Bracers.bracerVisible
+        bracerVisible[_i0] = true;  // EjsS Model.Variables.Bracers.bracerVisible
+      }
+    }());
+  });
+
+  _model.addToReset(function() {
+    spacerX = [3,2]; // EjsS Model.Variables.Spacers.spacerX
+    spacerY = new Array(1); // EjsS Model.Variables.Spacers.spacerY
+    (function () {
+      var _i0;
+      for (_i0=0; _i0<1; _i0+=1) {  // EjsS Model.Variables.Spacers.spacerY
+        spacerY[_i0] = 0;  // EjsS Model.Variables.Spacers.spacerY
+      }
+    }());
+    spacerInteracted = -1; // EjsS Model.Variables.Spacers.spacerInteracted
+    spacerSize = [2,-2]; // EjsS Model.Variables.Spacers.spacerSize
+    spacerVisible = [true,true]; // EjsS Model.Variables.Spacers.spacerVisible
   });
 
   _model.addToReset(function() {
@@ -586,27 +597,27 @@ var _stringProperties = {};
   }  // > CustomCode.toggleColor:37
 
   function divider () {  // > CustomCode.divider:1
-    //Function is to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
+    //Function to divide the bar into several pieces based on the target input  // > CustomCode.divider:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.divider:3
-   //   var noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:4
-     noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");;  // > CustomCode.divider:5
-     // > CustomCode.divider:6
-   if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:7
-        alert('Dividing into '+noOfPieces+' pieces.');  // > CustomCode.divider:8
-        //Initial size of new bars  // > CustomCode.divider:9
-        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:10
-        //Get original bar stats  // > CustomCode.divider:11
-        var new_color = colors[barInteracted];  // > CustomCode.divider:12
-        var og_posX = posX[barInteracted];  // > CustomCode.divider:13
-        var og_posY = posY[barInteracted];  // > CustomCode.divider:14
-        //Shorten the original bar  // > CustomCode.divider:15
-        size[barInteracted] = new_size;  // > CustomCode.divider:16
-        //Loop for noOfPieces and add to list  // > CustomCode.divider:17
-        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:18
-            posX.push(og_posX+i*new_size);  // > CustomCode.divider:19
-            posY.push(og_posY);  // > CustomCode.divider:20
-            size.push(new_size);  // > CustomCode.divider:21
-            colors.push(new_color);  // > CustomCode.divider:22
+     noOfPieces = prompt("I want to cut the bar  "+barInteracted+" into __  equal pieces.");  // > CustomCode.divider:4
+     // > CustomCode.divider:5
+   if (isInt(noOfPieces)&& parseInt(noOfPieces, 10)>0){//If the ans is an integer  // > CustomCode.divider:6
+        alert('Dividing into '+noOfPieces+' pieces.');//Display debug message  // > CustomCode.divider:7
+        //Get Initial size of new bars  // > CustomCode.divider:8
+        var new_size = size[barInteracted]/noOfPieces;  // > CustomCode.divider:9
+        //Get original bar stats  // > CustomCode.divider:10
+        var new_color = colors[barInteracted];//Gets the original bar color  // > CustomCode.divider:11
+        var og_posX = posX[barInteracted];//Gets the original bar x-coordinate  // > CustomCode.divider:12
+        var og_posY = posY[barInteracted];//Gets the original bar y-coordinate  // > CustomCode.divider:13
+        //Resize the current bar to the new size  // > CustomCode.divider:14
+        size[barInteracted] = new_size;  // > CustomCode.divider:15
+        //Loop for the number of pieces to split and add to the view  // > CustomCode.divider:16
+        for (var i=1;i<noOfPieces;i++){  // > CustomCode.divider:17
+            posX.push(og_posX+i*new_size);//Add the x-coordinate of the new bar  // > CustomCode.divider:18
+            posY.push(og_posY);//Add the y-coordinate of the new bar  // > CustomCode.divider:19
+            size.push(new_size);//Add the size of the new bar  // > CustomCode.divider:20
+            colors.push(new_color);//Add the color of the new bar  // > CustomCode.divider:21
+            barVisible.push(true);//Add the visibility of the new bar  // > CustomCode.divider:22
           }  // > CustomCode.divider:23
         }  // > CustomCode.divider:24
       else {//Else if not an integer, display error msg  // > CustomCode.divider:25
@@ -619,150 +630,157 @@ var _stringProperties = {};
   }  // > CustomCode.divider:32
 
   function fractions () {  // > CustomCode.fractions:1
-    //Function is to divide the bar into several pieces based on the input fraction  // > CustomCode.fractions:2
+    //Function to divide the bar into several pieces based on the input fraction  // > CustomCode.fractions:2
     if (barInteracted>-1){//If a bar is selected  // > CustomCode.fractions:3
-      var part = prompt("Fraction = Part/ Whole\nPart = ");  // > CustomCode.fractions:4
-      var whole = prompt("Fraction = Part/ Whole\nWhole = ");  // > CustomCode.fractions:5
-      if (isInt(whole)&&  isInt(part)&& parseInt(whole,10)>0 && parseInt(part,10)>0 && part<whole){ //If the ans is an integer  // > CustomCode.fractions:6
-        //Initial size of new bars  // > CustomCode.fractions:7
-        var new_size = size[barInteracted]/whole;  // > CustomCode.fractions:8
-        var new_color = "white";  // > CustomCode.fractions:9
-        //Get original bar stats  // > CustomCode.fractions:10
-        var og_color = colors[barInteracted];  // > CustomCode.fractions:11
-        var og_posX = posX[barInteracted];  // > CustomCode.fractions:12
-        var og_posY = posY[barInteracted];  // > CustomCode.fractions:13
-        //Shorten the original bar and color it white  // > CustomCode.fractions:14
-        size[barInteracted] = new_size;  // > CustomCode.fractions:15
-        //Loop for number of parts and add to list  // > CustomCode.fractions:16
-        for (var i=1;i<whole;i++){  // > CustomCode.fractions:17
-            posX.push(og_posX+i*new_size);  // > CustomCode.fractions:18
-            posY.push(og_posY);  // > CustomCode.fractions:19
-            size.push(new_size);  // > CustomCode.fractions:20
-            if (i+1>part)colors.push(new_color);  // > CustomCode.fractions:21
-            else colors.push(og_color);  // > CustomCode.fractions:22
-          }  // > CustomCode.fractions:23
-        alert("Spliting bar "+barInteracted+" into "+part+" / "+whole +"...");      // > CustomCode.fractions:24
-        }  // > CustomCode.fractions:25
-      else {//Else if not an integer, display error msg  // > CustomCode.fractions:26
-      alert('Please enter in a proper fraction. ');  // > CustomCode.fractions:27
-      }  // > CustomCode.fractions:28
-    }  // > CustomCode.fractions:29
-    else {//Display error message  // > CustomCode.fractions:30
-      alert('Please select one unit to be divided!');  // > CustomCode.fractions:31
-      }     // > CustomCode.fractions:32
-  }  // > CustomCode.fractions:33
+    //Prompt for the fractions by part then whole  // > CustomCode.fractions:4
+      var part = prompt("Fraction = Part/ Whole\nPart = ");  // > CustomCode.fractions:5
+      var whole = prompt("Fraction = Part/ Whole\nWhole = ");  // > CustomCode.fractions:6
+      if (isInt(whole)&&  isInt(part)&& parseInt(whole,10)>0 && parseInt(part,10)>0 && part<whole){ //If the ans is an integer  // > CustomCode.fractions:7
+        //Initialization for the new bars  // > CustomCode.fractions:8
+        var new_size = size[barInteracted]/whole;//Sets the size of the new bar  // > CustomCode.fractions:9
+        var new_color = "white";//Sets the color of the new bar  // > CustomCode.fractions:10
+        //Get original bar stats  // > CustomCode.fractions:11
+        var og_color = colors[barInteracted];//Get the original color of the bar  // > CustomCode.fractions:12
+        var og_posX = posX[barInteracted];//Gets the original x-coordinate of the bar  // > CustomCode.fractions:13
+        var og_posY = posY[barInteracted];//Gets the original  y-coordinate of the bar  // > CustomCode.fractions:14
+        //Resize the current bar to the new size  // > CustomCode.fractions:15
+        size[barInteracted] = new_size;  // > CustomCode.fractions:16
+        //Loop for number of parts and add to list  // > CustomCode.fractions:17
+        for (var i=1;i<whole;i++){  // > CustomCode.fractions:18
+            posX.push(og_posX+i*new_size);//Add the x-coordinate of the new bar  // > CustomCode.fractions:19
+            posY.push(og_posY);//Add the y-coordinate of the new bar  // > CustomCode.fractions:20
+            size.push(new_size);//Add the size of the new bar  // > CustomCode.fractions:21
+            //Add the color of the new bar depending on the fraction  // > CustomCode.fractions:22
+            if (i+1>part)colors.push(new_color);  // > CustomCode.fractions:23
+            else colors.push(og_color);  // > CustomCode.fractions:24
+            barVisible.push(true);//Add the visibility of the new bar  // > CustomCode.fractions:25
+          }  // > CustomCode.fractions:26
+         //Show debug msg that bar has been split successfully  // > CustomCode.fractions:27
+        alert("Spliting bar "+barInteracted+" into "+part+" / "+whole +"...");      // > CustomCode.fractions:28
+        }  // > CustomCode.fractions:29
+      else {//Else if not an integer, display error msg  // > CustomCode.fractions:30
+      alert('Please enter in a proper fraction. ');  // > CustomCode.fractions:31
+      }  // > CustomCode.fractions:32
+    }  // > CustomCode.fractions:33
+    else {//Display error message  // > CustomCode.fractions:34
+      alert('Please select one unit to be divided!');  // > CustomCode.fractions:35
+      }     // > CustomCode.fractions:36
+  }  // > CustomCode.fractions:37
 
   function isInt(value) {  // > CustomCode.isInt():1
-    return !isNaN(value) &&   // > CustomCode.isInt():2
-           parseInt(Number(value)) == value &&   // > CustomCode.isInt():3
-           !isNaN(parseInt(value, 10));  // > CustomCode.isInt():4
-  }  // > CustomCode.isInt():5
+    //Function to check if the value is an integer  // > CustomCode.isInt():2
+    return !isNaN(value) &&   // > CustomCode.isInt():3
+           parseInt(Number(value)) == value &&   // > CustomCode.isInt():4
+           !isNaN(parseInt(value, 10));  // > CustomCode.isInt():5
+  }  // > CustomCode.isInt():6
 
   function alignLeft () {  // > CustomCode.AlignLeft:1
-    for (var i=0;i<posX.length;i++){  // > CustomCode.AlignLeft:2
-    //  posX[i] = 20;//Align everything to the the x-coordinate of 20  // > CustomCode.AlignLeft:3
-      posX[i] = -5; // new Align due to resize to -10 to 10 instead of -100 to 100  // > CustomCode.AlignLeft:4
+    //Function to align all the bars to the left  // > CustomCode.AlignLeft:2
+    for (var i=0;i<posX.length;i++){//Loop for all the bar available  // > CustomCode.AlignLeft:3
+      posX[i] = -5; // Align everything to -5  // > CustomCode.AlignLeft:4
       }  // > CustomCode.AlignLeft:5
   }  // > CustomCode.AlignLeft:6
 
   function createBar () {  // > CustomCode.Create Bar Function:1
-  if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:2
-    posX.push(startingPosX);//Populate in the starting position  // > CustomCode.Create Bar Function:3
-    posY.push(startingPosY);  // > CustomCode.Create Bar Function:4
-  }  // > CustomCode.Create Bar Function:5
-  else {//Populate above the selected bar  // > CustomCode.Create Bar Function:6
-    posX.push(posX[barInteracted]);  // > CustomCode.Create Bar Function:7
-    posY.push(posY[barInteracted]+barHeight);  // > CustomCode.Create Bar Function:8
-    }  // > CustomCode.Create Bar Function:9
-  size.push(startingSize);//Push size of the bar into array  // > CustomCode.Create Bar Function:10
-  colors.push("Yellow");//Push color of the bar into array  // > CustomCode.Create Bar Function:11
-  barVisible.push(true);//Push visibility into array as true  // > CustomCode.Create Bar Function:12
-  //Get array size  // > CustomCode.Create Bar Function:13
-  var arr_size = size.length;  // > CustomCode.Create Bar Function:14
-  barInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bar Function:15
-  selection = "bar";//Sets last selection as the bar  // > CustomCode.Create Bar Function:16
-  }  // > CustomCode.Create Bar Function:17
+    //Function to create a new bar  // > CustomCode.Create Bar Function:2
+  if (barInteracted<0){//If no bar is selected  // > CustomCode.Create Bar Function:3
+    posX.push(startingPosX);//Populate in the starting position  // > CustomCode.Create Bar Function:4
+    posY.push(startingPosY);  // > CustomCode.Create Bar Function:5
+  }  // > CustomCode.Create Bar Function:6
+  else {//Else, Populate above the selected bar  // > CustomCode.Create Bar Function:7
+    posX.push(posX[barInteracted]);  // > CustomCode.Create Bar Function:8
+    posY.push(posY[barInteracted]+barHeight);  // > CustomCode.Create Bar Function:9
+    }  // > CustomCode.Create Bar Function:10
+  size.push(startingSize);//Push size of the bar into array  // > CustomCode.Create Bar Function:11
+  colors.push("Yellow");//Push color of the bar into array  // > CustomCode.Create Bar Function:12
+  barVisible.push(true);//Push visibility into array as true  // > CustomCode.Create Bar Function:13
+  //Get array size  // > CustomCode.Create Bar Function:14
+  var arr_size = size.length;  // > CustomCode.Create Bar Function:15
+  barInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bar Function:16
+  selection = "bar";//Sets last selection as the bar  // > CustomCode.Create Bar Function:17
+  }  // > CustomCode.Create Bar Function:18
 
   function createLabel () {  // > CustomCode.Create Label:1
-    var labelname = prompt("Input Label: ");  // > CustomCode.Create Label:2
-    labelX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Label:3
-    labelY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Label:4
-    labelT.push(labelname);//Add label  // > CustomCode.Create Label:5
-    labelVisible.push(true);//Add visibility as true  // > CustomCode.Create Label:6
-  //Get array size  // > CustomCode.Create Label:7
-  var arr_size = labelT.length;  // > CustomCode.Create Label:8
-  labelInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Label:9
-  selection = "label";//Sets last selection to be label  // > CustomCode.Create Label:10
-  }  // > CustomCode.Create Label:11
+    //Function to create a new label  // > CustomCode.Create Label:2
+    var labelname = prompt("Input Label: ");//Prompt for the label name  // > CustomCode.Create Label:3
+    labelX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Label:4
+    labelY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Label:5
+    labelT.push(labelname);//Add label  // > CustomCode.Create Label:6
+    labelVisible.push(true);//Add visibility as true  // > CustomCode.Create Label:7
+  //Get array size  // > CustomCode.Create Label:8
+  var arr_size = labelT.length;  // > CustomCode.Create Label:9
+  labelInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Label:10
+  selection = "label";//Sets last selection to be label  // > CustomCode.Create Label:11
+  }  // > CustomCode.Create Label:12
 
   function createSpacer () {  // > CustomCode.Create Spacer:1
-    spacerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Spacer:2
-    spacerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Spacer:3
-    spacerVisible.push(true);//Push visibility as true  // > CustomCode.Create Spacer:4
-  //Get array size  // > CustomCode.Create Spacer:5
-  var arr_size = spacerX.length;  // > CustomCode.Create Spacer:6
-  spacerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Spacer:7
-  selection = "spacer";//Sets last selection to be spacer  // > CustomCode.Create Spacer:8
-  }  // > CustomCode.Create Spacer:9
+    //Function to create a spacer  // > CustomCode.Create Spacer:2
+    spacerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Spacer:3
+    spacerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Spacer:4
+    spacerVisible.push(true);//Push visibility as true  // > CustomCode.Create Spacer:5
+  //Get array size  // > CustomCode.Create Spacer:6
+  var arr_size = spacerX.length;  // > CustomCode.Create Spacer:7
+  spacerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Spacer:8
+  selection = "spacer";//Sets last selection to be spacer  // > CustomCode.Create Spacer:9
+  }  // > CustomCode.Create Spacer:10
 
   function createBracer () {  // > CustomCode.Create Bracer:1
-    bracerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Bracer:2
-    bracerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Bracer:3
-    bracerVisible.push(true);//Push visibility as true into array  // > CustomCode.Create Bracer:4
-  //Get array size  // > CustomCode.Create Bracer:5
-  var arr_size = bracerX.length;  // > CustomCode.Create Bracer:6
-  bracerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bracer:7
-  selection = "bracer";//Sets last selection to be spacer  // > CustomCode.Create Bracer:8
-  }  // > CustomCode.Create Bracer:9
+    //Function to create a bracer  // > CustomCode.Create Bracer:2
+    bracerX.push(startingPosX);//Add label to starting pos  // > CustomCode.Create Bracer:3
+    bracerY.push(startingPosY);//Add label to starting pos  // > CustomCode.Create Bracer:4
+    bracerVisible.push(true);//Push visibility as true into array  // > CustomCode.Create Bracer:5
+  //Get array size  // > CustomCode.Create Bracer:6
+  var arr_size = bracerX.length;  // > CustomCode.Create Bracer:7
+  bracerInteracted = arr_size-1;//Set the bar selected to be the latest one made  // > CustomCode.Create Bracer:8
+  selection = "bracer";//Sets last selection to be spacer  // > CustomCode.Create Bracer:9
+  }  // > CustomCode.Create Bracer:10
 
   function removeItem () {  // > CustomCode.removeFunction:1
-    switch(selection){  // > CustomCode.removeFunction:2
-      case "bar":  // > CustomCode.removeFunction:3
-          if (barInteracted > -1) {  // > CustomCode.removeFunction:4
-            barVisible[barInteracted] = false;//Hide the bar outside of the graph  // > CustomCode.removeFunction:5
-            barInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:6
-          }  // > CustomCode.removeFunction:7
-          else {  // > CustomCode.removeFunction:8
-             alert('Select something first!');   // > CustomCode.removeFunction:9
-          }  // > CustomCode.removeFunction:10
-          break;  // > CustomCode.removeFunction:11
-       case "label":  // > CustomCode.removeFunction:12
-         if (labelInteracted > -1) {  // > CustomCode.removeFunction:13
-            labelVisible[labelInteracted] = false;//Hide the label outside of the graph  // > CustomCode.removeFunction:14
-            labelInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:15
-          }  // > CustomCode.removeFunction:16
-          else {  // > CustomCode.removeFunction:17
-             alert('Select something first!');   // > CustomCode.removeFunction:18
-          }  // > CustomCode.removeFunction:19
-         break;  // > CustomCode.removeFunction:20
-        case "spacer":  // > CustomCode.removeFunction:21
-         if (spacerInteracted > -1) {  // > CustomCode.removeFunction:22
-            spacerVisible[spacerInteracted] = false;//Hide the spacer outside of the graph  // > CustomCode.removeFunction:23
-            spacerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:24
-          }  // > CustomCode.removeFunction:25
-          else {  // > CustomCode.removeFunction:26
-             alert('Select something first!');   // > CustomCode.removeFunction:27
-          }  // > CustomCode.removeFunction:28
-         break;  // > CustomCode.removeFunction:29
-         case "bracer":  // > CustomCode.removeFunction:30
-         if (bracerInteracted > -1) {  // > CustomCode.removeFunction:31
-            bracerVisible[bracerInteracted] = false;//Hide the bracer outside of the graph  // > CustomCode.removeFunction:32
-            bracerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:33
-          }  // > CustomCode.removeFunction:34
-          else {  // > CustomCode.removeFunction:35
-             alert('Select something first!');   // > CustomCode.removeFunction:36
-          }  // > CustomCode.removeFunction:37
-         break;  // > CustomCode.removeFunction:38
-         default:  // > CustomCode.removeFunction:39
-           alert('Select something first!');   // > CustomCode.removeFunction:40
-           break;  // > CustomCode.removeFunction:41
-      }  // > CustomCode.removeFunction:42
-    selection = "none";  // > CustomCode.removeFunction:43
-  }  // > CustomCode.removeFunction:44
-
-  _model.addToInitialization(function() {
-    if (!__pagesEnabled["Init Page"]) return;
-  });
+    //Function to remove the selected item  // > CustomCode.removeFunction:2
+    //This is determine by the variable selection and the id of the target  // > CustomCode.removeFunction:3
+    switch(selection){//Switch-case for selection  // > CustomCode.removeFunction:4
+      case "bar"://If selection=="bar"  // > CustomCode.removeFunction:5
+          if (barInteracted > -1) {//If a bar has been selected  // > CustomCode.removeFunction:6
+            barVisible[barInteracted] = false;//Hide the bar   // > CustomCode.removeFunction:7
+            barInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:8
+          }  // > CustomCode.removeFunction:9
+          else {//Else display an msg to click a bar first  // > CustomCode.removeFunction:10
+             alert('Select something first!');   // > CustomCode.removeFunction:11
+          }  // > CustomCode.removeFunction:12
+          break;  // > CustomCode.removeFunction:13
+       case "label"://If selection=="label"  // > CustomCode.removeFunction:14
+         if (labelInteracted > -1) {//If a label has been selected  // > CustomCode.removeFunction:15
+            labelVisible[labelInteracted] = false;//Hide the label   // > CustomCode.removeFunction:16
+            labelInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:17
+          }  // > CustomCode.removeFunction:18
+          else {//Else display msg to click a label first  // > CustomCode.removeFunction:19
+             alert('Select something first!');   // > CustomCode.removeFunction:20
+          }  // > CustomCode.removeFunction:21
+         break;  // > CustomCode.removeFunction:22
+        case "spacer"://If selection=="spacer"  // > CustomCode.removeFunction:23
+         if (spacerInteracted > -1) {//If a spacer has been selected  // > CustomCode.removeFunction:24
+            spacerVisible[spacerInteracted] = false;//Hide the spacer   // > CustomCode.removeFunction:25
+            spacerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:26
+          }  // > CustomCode.removeFunction:27
+          else {//Else display msg to click a spacer first  // > CustomCode.removeFunction:28
+             alert('Select something first!');   // > CustomCode.removeFunction:29
+          }  // > CustomCode.removeFunction:30
+         break;  // > CustomCode.removeFunction:31
+         case "bracer"://If selection=="bracer"  // > CustomCode.removeFunction:32
+         if (bracerInteracted > -1) {//If a bracer has been selected  // > CustomCode.removeFunction:33
+            bracerVisible[bracerInteracted] = false;//Hide the bracer   // > CustomCode.removeFunction:34
+            bracerInteracted = -1;//Reset bar selection  // > CustomCode.removeFunction:35
+          }  // > CustomCode.removeFunction:36
+          else {//Else display msg to click a bracer first  // > CustomCode.removeFunction:37
+             alert('Select something first!');   // > CustomCode.removeFunction:38
+          }  // > CustomCode.removeFunction:39
+         break;  // > CustomCode.removeFunction:40
+         default://Else if selection is none  // > CustomCode.removeFunction:41
+           alert('Select something first!');//Prompt user to select something first   // > CustomCode.removeFunction:42
+           break;  // > CustomCode.removeFunction:43
+      }  // > CustomCode.removeFunction:44
+    selection = "none";//Reset selection after removing  // > CustomCode.removeFunction:45
+  }  // > CustomCode.removeFunction:46
 
   _model.addToFixedRelations(function() { _isPaused = _model.isPaused(); _isPlaying = _model.isPlaying(); });
 
