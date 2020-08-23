@@ -383,6 +383,12 @@ var _stringProperties = {};
     selection = "label";  // > CustomCode.Label Selection:4
   }  // > CustomCode.Label Selection:5
 
+  function editLabel () {  // > CustomCode.editLabel:1
+    var newLabel = prompt("Input New Label: ");//Prompt for the new label  // > CustomCode.editLabel:2
+    //Replace label with the new one  // > CustomCode.editLabel:3
+    labelT[labelInteracted] = newLabel;  // > CustomCode.editLabel:4
+  }  // > CustomCode.editLabel:5
+
   function spacerSelection () { // put in onrelease instead of onpress  // > CustomCode.Spacer Selection:1
     console.log("Spacer Selected: "+spacerInteracted);//Log the selection  // > CustomCode.Spacer Selection:2
     //Sets selection as a spacer  // > CustomCode.Spacer Selection:3
@@ -781,6 +787,7 @@ var _stringProperties = {};
           _view.labelSets.linkProperty("Y",  function() { return labelY; }, function(_v) { labelY = _v; } ); // Front End linking property 'Y' for element 'labelSets'
           _view.labelSets.linkProperty("Text",  function() { return labelT; }, function(_v) { labelT = _v; } ); // Front End linking property 'Text' for element 'labelSets'
           _view.labelSets.setAction("OnPress", labelSelection); // Front End setting action 'OnPress' for element 'labelSets'
+          _view.labelSets.setAction("OnDoubleClick", editLabel); // Front End setting action 'OnDoubleClick' for element 'labelSets'
           _view.labelSets.linkProperty("Font",  function() { return font; }, function(_v) { font = _v; } ); // Front End linking property 'Font' for element 'labelSets'
           _view.labelSets.linkProperty("ElementInteracted",  function() { return labelInteracted; }, function(_v) { labelInteracted = _v; } ); // Front End linking property 'ElementInteracted' for element 'labelSets'
           _view.spacerSet.linkProperty("SizeX",  function() { return spacerSize; }, function(_v) { spacerSize = _v; } ); // Front End linking property 'SizeX' for element 'spacerSet'
