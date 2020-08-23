@@ -91,6 +91,7 @@ var _stringProperties = {};
   var bracerInteracted; // EjsS Model.Variables.Label Variables.bracerInteracted
 
   var font; // EjsS Model.Variables.Visualization.font
+  var fontb; // EjsS Model.Variables.Visualization.fontb
 
   _model.getOdes = function() { return []; };
 
@@ -124,7 +125,8 @@ var _stringProperties = {};
       bracerX : bracerX,
       bracerY : bracerY,
       bracerInteracted : bracerInteracted,
-      font : font
+      font : font,
+      fontb : fontb
     };
   };
 
@@ -155,7 +157,8 @@ var _stringProperties = {};
       bracerX : bracerX,
       bracerY : bracerY,
       bracerInteracted : bracerInteracted,
-      font : font
+      font : font,
+      fontb : fontb
     };
   };
 
@@ -184,6 +187,7 @@ var _stringProperties = {};
     if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
     if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
     if(typeof json.font != "undefined") font = json.font;
+    if(typeof json.fontb != "undefined") fontb = json.fontb;
   };
 
   _model._readParametersPublic = function(json) {
@@ -211,6 +215,7 @@ var _stringProperties = {};
     if(typeof json.bracerY != "undefined") bracerY = json.bracerY;
     if(typeof json.bracerInteracted != "undefined") bracerInteracted = json.bracerInteracted;
     if(typeof json.font != "undefined") font = json.font;
+    if(typeof json.fontb != "undefined") fontb = json.fontb;
   };
 
   function _unserializePublic(json) { return _model.unserializePublic(json); }
@@ -324,6 +329,7 @@ var _stringProperties = {};
 
   _model.addToReset(function() {
     font = "normal normal 1.5vw"; // EjsS Model.Variables.Visualization.font
+    fontb = "normal bold 2vw"; // EjsS Model.Variables.Visualization.fontb
   });
 
   if (_inputParameters) {
@@ -745,10 +751,14 @@ var _stringProperties = {};
           _view.PercentageButton.linkProperty("Disabled",  function() { return size.length>1?false:true; } ); // Front End linking property 'Disabled' for element 'PercentageButton'
           _view.PercentageButton.setAction("OnClick", percentage); // Front End setting action 'OnClick' for element 'PercentageButton'
           _view.AlignLeftButton.setAction("OnClick", alignLeft); // Front End setting action 'OnClick' for element 'AlignLeftButton'
+          _view.AlignLeftButton.linkProperty("Font",  function() { return fontb; }, function(_v) { fontb = _v; } ); // Front End linking property 'Font' for element 'AlignLeftButton'
           _view.ColorsButton.linkProperty("Disabled",  function() { return barInteracted>-1?false:true; } ); // Front End linking property 'Disabled' for element 'ColorsButton'
           _view.ColorsButton.setAction("OnClick", toggleColor); // Front End setting action 'OnClick' for element 'ColorsButton'
+          _view.ColorsButton.linkProperty("Font",  function() { return fontb; }, function(_v) { fontb = _v; } ); // Front End linking property 'Font' for element 'ColorsButton'
           _view.RemoveButton.setAction("OnClick", removeItem); // Front End setting action 'OnClick' for element 'RemoveButton'
+          _view.RemoveButton.linkProperty("Font",  function() { return fontb; }, function(_v) { fontb = _v; } ); // Front End linking property 'Font' for element 'RemoveButton'
           _view.ResetButton.setAction("OnPress", _reset); // Front End setting action 'OnPress' for element 'ResetButton'
+          _view.ResetButton.linkProperty("Font",  function() { return fontb; }, function(_v) { fontb = _v; } ); // Front End linking property 'Font' for element 'ResetButton'
           _view.plottingPanel.linkProperty("TRMessage",  function() { return "selection = "+selection+"\nBar ID="+barInteracted+"\nLabel ID = "+labelInteracted+"\nSpacer ID = "+spacerInteracted; } ); // Front End linking property 'TRMessage' for element 'plottingPanel'
           _view.plottingPanel.linkProperty("TLMessage",  function() { return "size="+size+"\nposX="+posX+"\nposY="+posY; } ); // Front End linking property 'TLMessage' for element 'plottingPanel'
           _view.barSets.linkProperty("FillColor",  function() { return colors; }, function(_v) { colors = _v; } ); // Front End linking property 'FillColor' for element 'barSets'
@@ -841,7 +851,7 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"leftTools", _view.controlPanel) // EJsS HtmlView.Front End: declaration of element 'leftTools'
-      .setProperty("CSS",{"float" : "left"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftTools'
+      .setProperty("CSS",{"float" : "left",   "padding" : "1vw" }) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftTools'
       .setProperty("Display","inline-flex") // EJsS HtmlView.Front End: setting property 'Display' for element 'leftTools'
       ;
 
@@ -868,11 +878,17 @@ function MaPS_2020_View_0 (_topFrame) {
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'labelButton'
       ;
 
-    _view._addElement(EJSS_INTERFACE.imageAndTextButton,"sizeLabel", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeLabel'
+    _view._addElement(EJSS_INTERFACE.panel,"sizeSliderRow", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeSliderRow'
+      .setProperty("Background","Orange") // EJsS HtmlView.Front End: setting property 'Background' for element 'sizeSliderRow'
+      .setProperty("Foreground","White") // EJsS HtmlView.Front End: setting property 'Foreground' for element 'sizeSliderRow'
+      ;
+
+    _view._addElement(EJSS_INTERFACE.imageAndTextButton,"sizeLabel", _view.sizeSliderRow) // EJsS HtmlView.Front End: declaration of element 'sizeLabel'
+      .setProperty("Foreground","White") // EJsS HtmlView.Front End: setting property 'Foreground' for element 'sizeLabel'
       .setProperty("Text","Size Editor") // EJsS HtmlView.Front End: setting property 'Text' for element 'sizeLabel'
       ;
 
-    _view._addElement(EJSS_INTERFACE.slider,"sizeSlider", _view.leftTools) // EJsS HtmlView.Front End: declaration of element 'sizeSlider'
+    _view._addElement(EJSS_INTERFACE.slider,"sizeSlider", _view.sizeSliderRow) // EJsS HtmlView.Front End: declaration of element 'sizeSlider'
       .setProperty("Minimum",0.1) // EJsS HtmlView.Front End: setting property 'Minimum' for element 'sizeSlider'
       .setProperty("Maximum",10) // EJsS HtmlView.Front End: setting property 'Maximum' for element 'sizeSlider'
       .setProperty("ShowText",true) // EJsS HtmlView.Front End: setting property 'ShowText' for element 'sizeSlider'
@@ -909,25 +925,25 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"AlignLeftButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'AlignLeftButton'
-      .setProperty("Tooltip","Align Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
-      .setProperty("Text","Align Left") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
+      .setProperty("Tooltip","Align all the bars to the Left") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'AlignLeftButton'
+      .setProperty("Text","≣") // EJsS HtmlView.Front End: setting property 'Text' for element 'AlignLeftButton'
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'AlignLeftButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ColorsButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ColorsButton'
-      .setProperty("Tooltip","Colours") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
-      .setProperty("Text","Colours") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
+      .setProperty("Tooltip","Changes the color of the bar") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ColorsButton'
+      .setProperty("Text","🎨") // EJsS HtmlView.Front End: setting property 'Text' for element 'ColorsButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"RemoveButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'RemoveButton'
-      .setProperty("Tooltip","Remove") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
-      .setProperty("Text","🗑Remove") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
+      .setProperty("Tooltip","Remove target") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'RemoveButton'
+      .setProperty("Text","🗑") // EJsS HtmlView.Front End: setting property 'Text' for element 'RemoveButton'
       .setProperty("Disabled",false) // EJsS HtmlView.Front End: setting property 'Disabled' for element 'RemoveButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.button,"ResetButton", _view.rightTools) // EJsS HtmlView.Front End: declaration of element 'ResetButton'
       .setProperty("Tooltip","Reset") // EJsS HtmlView.Front End: setting property 'Tooltip' for element 'ResetButton'
-      .setProperty("Text","↻Reset") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
+      .setProperty("Text","↻") // EJsS HtmlView.Front End: setting property 'Text' for element 'ResetButton'
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"row", _view.threePanelsPanel) // EJsS HtmlView.Front End: declaration of element 'row'
@@ -936,7 +952,7 @@ function MaPS_2020_View_0 (_topFrame) {
       ;
 
     _view._addElement(EJSS_INTERFACE.panel,"leftpanel", _view.row) // EJsS HtmlView.Front End: declaration of element 'leftpanel'
-      .setProperty("Width","100%") // EJsS HtmlView.Front End: setting property 'Width' for element 'leftpanel'
+      .setProperty("Width","95vw") // EJsS HtmlView.Front End: setting property 'Width' for element 'leftpanel'
       .setProperty("CSS",{"display":"inline-block",    "margin":"2px",    "vertical-align": "top",   "position": "relative",   "margin-left": "1vw"}) // EJsS HtmlView.Front End: setting property 'CSS' for element 'leftpanel'
       .setProperty("Background","Cyan") // EJsS HtmlView.Front End: setting property 'Background' for element 'leftpanel'
       ;
